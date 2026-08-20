@@ -1,0 +1,203 @@
+'use client';
+
+import React, { useState, useRef, useEffect } from 'react';
+import { useChat } from 'ai/react';
+import {
+  Bot,
+  Send,
+  Sparkles,
+  X,
+  RefreshCw,
+  Shield,
+  DollarSign,
+  Activity,
+} from 'lucide-react';
+
+export default function DevOpsAgentChat() {
+  const [isOpen, setIsOpen] = useState(false);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  const {
+    messages,
+    input,
+    handleInputChange,
+    handleSubmit,
+    append,
+    isLoading,
+  } = useChat({
+    api: '/api/chat',
+    initialMessages: [
+      {
+        id: 'init-1',
+        role: 'assistant',
+        content:
+          "Hello! I'm your streaming DevOps & Governance Agent. Ask me about security vulnerabilities, cost optimization savings, or system health.",
+      },
+    ],
+  });
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  useEffect(() => {
+    if (isOpen) scrollToBottom();
+  }, [messages, isOpen, isLoading]);
+
+  const handleQuickPrompt = (promptText: string) => {
+    append({
+      role: 'user',
+      content: promptText,
+    });
+  };
+
+  return (
+    <>
+      {/* Trigger Button */}
+      {!isOpen && (
+        <button
+          onClick={() => setIsOpen(true)}
+          className="fixed bottom-6 right-6 bg-gradient-to-r from-rose-600 to-amber-500 hover:from-rose-500 hover:to-amber-400 text-white p-4 rounded-full shadow-2xl z-50 flex items-center space-x-2 transition-all hover:scale-105 border border-white/20"
+        >
+          <Bot className="w-6 h-6 animate-pulse" />
+          <span className="text-xs font-bold tracking-wide pr-1">DevOps Agent</span>
+          <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 border-2 border-slate-950"></span>
+        </button>
+      )}
+
+      {/* Chat Drawer */}
+      {isOpen && (
+        <div className="fixed bottom-6 right-6 w-96 h-[580px] bg-slate-950 border border-slate-800 rounded-2xl shadow-2xl flex flex-col z-50 overflow-hidden">
+          {/* Header */}
+          <div className="bg-slate-900 border-b border-slate-800 p-4 flex items-center justify-between">
+            <div className="flex items-center space-x-3">
+              <div className="p-2 bg-rose-500/10 border border-rose-500/20 rounded-lg">
+                <Bot className="w-5 h-5 text-rose-400" />
+              </div>
+              <div>
+                <h3 className="text-sm font-bold text-white flex items-center space-x-2">
+                  <span>DevOps Agent</span>
+                  <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+                </h3>
+                <p className="text-[10px] text-slate-400 flex items-center space-x-1">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                  <span>Vercel AI SDK Streaming</span>
+                </p>
+              </div>
+            </div>
+
+            <button
+              onClick={() => setIsOpen(false)}
+              className="text-slate-400 hover:text-white p-1 rounded-lg transition"
+            >
+              <X className="w-5 h-5" />
+            </button>
+          </div>
+
+          {/* Quick Actions */}
+          <div className="bg-slate-900/50 p-2 border-b border-slate-800 flex items-center space-x-2 overflow-x-auto text-[11px] font-mono">
+            <button
+              onClick={() => handleQuickPrompt('What is our current security posture?')}
+              className="px-2.5 py-1 bg-slate-800 hover:bg-slate-700 text-rose-300 rounded border border-rose-500/20 whitespace-nowrap transition flex items-center space-x-1"
+            >
+              <Shield className="w-3 h-3 text-rose-400" />
+              <span>Security Status</span>
+            </button>
+            <button
+              onClick={() => handleQuickPrompt('Show top cost optimization savings')}
+              className="px-2.5 py-1 bg-slate-800 hover:bg-slate-700 text-emerald-300 rounded border border-emerald-500/20 whitespace-nowrap transition flex items-center space-x-1"
+            >
+              <DollarSign className="w-3 h-3 text-emerald-400" />
+              <span>Cost Savings</span>
+            </button>
+            <button
+              onClick={() => handleQuickPrompt('Check system health and pipelines')}
+              className="px-2.5 py-1 bg-slate-800 hover:bg-slate-700 text-blue-300 rounded border border-blue-500/20 whitespace-nowrap transition flex items-center space-x-1"
+            >
+              <Activity className="w-3 h-3 text-blue-400" />
+              <span>System Health</span>
+            </button>
+          </div>
+
+          {/* Messages Stream */}
+          <div className="flex-1 p-4 overflow-y-auto space-y-4 text-xs">
+            {messages.map((m) => (
+              <div
+                key={m.id}
+                className={`flex flex-col ${
+                  m.role === 'user' ? 'items-end' : 'items-start'
+                }`}
+              >
+                <div
+                  className={`max-w-[88%] p-3 rounded-xl whitespace-pre-wrap leading-relaxed ${
+                    m.role === 'user'
+                      ? 'bg-rose-600 text-white font-medium rounded-br-none'
+                      : 'bg-slate-900 border border-slate-800 text-slate-200 rounded-bl-none'
+                  }`}
+                >
+                  {m.content}
+
+                  {/* Render executed tool call invocations */}
+                  {m.toolInvocations?.map((toolInvocation) => {
+                    const toolCallId = toolInvocation.toolCallId;
+                    if (toolInvocation.state === 'result') {
+                      return (
+                        <div
+                          key={toolCallId}
+                          className="mt-2 p-2 bg-slate-950 rounded border border-slate-800 font-mono text-[10px] text-slate-400"
+                        >
+                          <span className="text-emerald-400 font-bold">
+                            ✓ {toolInvocation.toolName}
+                          </span>
+                          <pre className="mt-1 text-[9px] overflow-x-auto text-slate-300">
+                            {JSON.stringify(toolInvocation.result, null, 2)}
+                          </pre>
+                        </div>
+                      );
+                    }
+                    return (
+                      <div
+                        key={toolCallId}
+                        className="mt-2 text-[10px] text-amber-400 animate-pulse font-mono"
+                      >
+                        ⚡ Querying dashboard context ({toolInvocation.toolName})...
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            ))}
+
+            {isLoading && (
+              <div className="flex items-center space-x-2 text-slate-400 bg-slate-900 border border-slate-800 p-2.5 rounded-xl w-36 font-mono text-[11px]">
+                <RefreshCw className="w-3.5 h-3.5 animate-spin text-rose-400" />
+                <span>Streaming AI...</span>
+              </div>
+            )}
+            <div ref={messagesEndRef} />
+          </div>
+
+          {/* Input Box */}
+          <div className="p-3 bg-slate-900 border-t border-slate-800">
+            <form onSubmit={handleSubmit} className="flex items-center space-x-2">
+              <input
+                type="text"
+                placeholder="Ask agent about security, costs, or PRs..."
+                value={input}
+                onChange={handleInputChange}
+                className="flex-1 bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-rose-500"
+              />
+              <button
+                type="submit"
+                disabled={isLoading || !input.trim()}
+                className="p-2 bg-rose-600 hover:bg-rose-500 disabled:opacity-50 text-white rounded-lg transition"
+              >
+                <Send className="w-4 h-4" />
+              </button>
+            </form>
+          </div>
+        </div>
+      )}
+    </>
+  );
+}
