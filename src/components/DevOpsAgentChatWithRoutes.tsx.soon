@@ -1,7 +1,8 @@
 'use client';
 
 import React, { useState, useRef, useEffect } from 'react';
-import { useChat } from 'ai/react';
+import { useChat } from '@ai-sdk/react';
+import { DefaultChatTransport, type UIMessage } from 'ai';
 import {
   Bot,
   Send,
@@ -13,28 +14,18 @@ import {
   Activity,
 } from 'lucide-react';
 
-export default function DevOpsAgentChat() {
+export default function DevOpsAgentChatWithRoutes() {
   const [isOpen, setIsOpen] = useState(false);
+  const [input, setInput] = useState('');
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  const {
-    messages,
-    input,
-    handleInputChange,
-    handleSubmit,
-    append,
-    isLoading,
-  } = useChat({
-    api: '/api/chat',
-    initialMessages: [
-      {
-        id: 'init-1',
-        role: 'assistant',
-        content:
-          "Hello! I'm your streaming DevOps & Governance Agent. Ask me about security vulnerabilities, cost optimization savings, or system health.",
-      },
-    ],
+  const { messages, sendMessage, status } = useChat({
+    transport: new DefaultChatTransport({
+      api: '/api/chat',
+    }),
   });
+
+  const isLoading = status === 'streaming' || status === 'submitted';
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -44,11 +35,16 @@ export default function DevOpsAgentChat() {
     if (isOpen) scrollToBottom();
   }, [messages, isOpen, isLoading]);
 
-  const handleQuickPrompt = (promptText: string) => {
-    append({
-      role: 'user',
-      content: promptText,
-    });
+  const handleQuickPrompt = async (promptText: string) => {
+    await sendMessage({ role: 'user', content: promptText });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!input.trim() || isLoading) return;
+    const textToSend = input;
+    setInput('');
+    await sendMessage({ role: 'user', content: textToSend });
   };
 
   return (
@@ -121,52 +117,65 @@ export default function DevOpsAgentChat() {
 
           {/* Messages Stream */}
           <div className="flex-1 p-4 overflow-y-auto space-y-4 text-xs">
-            {messages.map((m) => (
-              <div
-                key={m.id}
-                className={`flex flex-col ${
-                  m.role === 'user' ? 'items-end' : 'items-start'
-                }`}
-              >
+            {messages.map((m: UIMessage) => {
+              const textContent =
+                m.parts
+                  ?.filter((part) => part.type === 'text')
+                  .map((part) => (part as { type: 'text'; text: string }).text)
+                  .join('') || '';
+
+              const toolParts =
+                m.parts?.filter((part) => part.type === 'tool-invocation') || [];
+
+              return (
                 <div
-                  className={`max-w-[88%] p-3 rounded-xl whitespace-pre-wrap leading-relaxed ${
-                    m.role === 'user'
-                      ? 'bg-rose-600 text-white font-medium rounded-br-none'
-                      : 'bg-slate-900 border border-slate-800 text-slate-200 rounded-bl-none'
+                  key={m.id}
+                  className={`flex flex-col ${
+                    m.role === 'user' ? 'items-end' : 'items-start'
                   }`}
                 >
-                  {m.content}
+                  <div
+                    className={`max-w-[88%] p-3 rounded-xl whitespace-pre-wrap leading-relaxed ${
+                      m.role === 'user'
+                        ? 'bg-rose-600 text-white font-medium rounded-br-none'
+                        : 'bg-slate-900 border border-slate-800 text-slate-200 rounded-bl-none'
+                    }`}
+                  >
+                    {textContent}
 
-                  {/* Render executed tool call invocations */}
-                  {m.toolInvocations?.map((toolInvocation) => {
-                    const toolCallId = toolInvocation.toolCallId;
-                    if (toolInvocation.state === 'result') {
+                    {toolParts.map((toolPart: any) => {
+                      const toolInvocation = toolPart.toolInvocation;
+                      if (!toolInvocation) return null;
+
+                      if (toolInvocation.state === 'result') {
+                        return (
+                          <div
+                            key={toolInvocation.toolCallId}
+                            className="mt-2 p-2 bg-slate-950 rounded border border-slate-800 font-mono text-[10px] text-slate-400"
+                          >
+                            <span className="text-emerald-400 font-bold">
+                              ✓ {toolInvocation.toolName}
+                            </span>
+                            <pre className="mt-1 text-[9px] overflow-x-auto text-slate-300">
+                              {JSON.stringify(toolInvocation.result, null, 2)}
+                            </pre>
+                          </div>
+                        );
+                      }
+
                       return (
                         <div
-                          key={toolCallId}
-                          className="mt-2 p-2 bg-slate-950 rounded border border-slate-800 font-mono text-[10px] text-slate-400"
+                          key={toolInvocation.toolCallId}
+                          className="mt-2 text-[10px] text-amber-400 animate-pulse font-mono"
                         >
-                          <span className="text-emerald-400 font-bold">
-                            ✓ {toolInvocation.toolName}
-                          </span>
-                          <pre className="mt-1 text-[9px] overflow-x-auto text-slate-300">
-                            {JSON.stringify(toolInvocation.result, null, 2)}
-                          </pre>
+                          ⚡ Querying dashboard context ({toolInvocation.toolName})...
                         </div>
                       );
-                    }
-                    return (
-                      <div
-                        key={toolCallId}
-                        className="mt-2 text-[10px] text-amber-400 animate-pulse font-mono"
-                      >
-                        ⚡ Querying dashboard context ({toolInvocation.toolName})...
-                      </div>
-                    );
-                  })}
+                    })}
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
 
             {isLoading && (
               <div className="flex items-center space-x-2 text-slate-400 bg-slate-900 border border-slate-800 p-2.5 rounded-xl w-36 font-mono text-[11px]">
@@ -184,7 +193,7 @@ export default function DevOpsAgentChat() {
                 type="text"
                 placeholder="Ask agent about security, costs, or PRs..."
                 value={input}
-                onChange={handleInputChange}
+                onChange={(e) => setInput(e.target.value)}
                 className="flex-1 bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-rose-500"
               />
               <button

@@ -3,7 +3,7 @@ import { Inter } from 'next/font/google'; // Change 'next/font' to 'next/font/go
 import './globals.css';
 import { AuthProvider } from '@/components/AuthProvider';
 import { Navbar } from '@/components/Navbar';
-import DevOpsAgentChat from '@/components/DevOpsAgentChat';
+//import DevOpsAgentChat from '@/components/DevOpsAgentChat';
 import ThemeToggle from '@/components/ThemeToggle';
 import { ThemeProvider } from '@/components/ThemeProvider';
 
@@ -33,7 +33,7 @@ export default function RootLayout({
           <main>{children}</main>
           {/* Global Floating DevOps Agent */}
 {/* DevOps AI Agent Chat */}
-          <DevOpsAgentChat />
+          {/* <DevOpsAgentChat /> */}
           </AuthProvider>
         </ThemeProvider>
       </body>

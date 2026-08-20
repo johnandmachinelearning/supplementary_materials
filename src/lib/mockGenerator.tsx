@@ -1,4 +1,4 @@
-import { AWSAccount, Workload, OptimizationOpportunity } from '@/types';
+import { AWSAccount, Workload, OptimizationOpportunity, BackupStatus } from '@/types';
 
 const ENVIRONMENTS = ['production', 'staging', 'development', 'sandbox'] as const;
 const REGIONS = ['us-east-1', 'us-west-2', 'eu-west-1', 'ap-southeast-1'];

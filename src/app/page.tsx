@@ -27,7 +27,7 @@ import {
   AlertTriangle,
   Layers,
   Box,
-  Slack,
+  MessageSquare,
   X,
   Filter,
 } from 'lucide-react';
