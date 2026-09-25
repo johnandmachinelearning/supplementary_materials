@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cloud Engineer Portfolio | Cyber Theme</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Space Grotesk Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Space Grotesk', 'sans-serif'],
+                    },
+                    colors: {
+                        cyber: {
+                            bg: '#050505',
+                            card: '#0d0d0d',
+                            yellow: '#facc15',
+                            cyan: '#22d3ee',
+                            pink: '#f43f5e',
+                            border: '#262626',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-cyber-bg text-slate-100 font-sans antialiased selection:bg-cyber-yellow selection:text-black">
+
+    <!-- Top Navigation -->
+    <nav class="fixed top-0 w-full z-50 bg-cyber-bg/90 backdrop-blur border-b border-cyber-border">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 bg-cyber-yellow text-black font-extrabold flex items-center justify-center rounded border border-white">
+                        CE
+                    </div>
+                    <span class="font-bold text-lg tracking-wider text-white">STUDENT<span class="text-cyber-yellow">_PORTFOLIO</span></span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8 text-xs font-bold tracking-widest text-slate-400">
+                    <a href="#about" class="hover:text-cyber-yellow transition">[ABOUT]</a>
+                    <a href="#skills" class="hover:text-cyber-yellow transition">[SKILLS]</a>
+                    <a href="#projects" class="hover:text-cyber-yellow transition">[PROJECTS]</a>
+                    <a href="#labs" class="hover:text-cyber-yellow transition">[LABS]</a>
+                </div>
+                <a href="#contact" class="bg-cyber-yellow hover:bg-yellow-300 text-black font-bold text-xs px-4 py-2 rounded transition shadow-[3px_3px_0px_0px_rgba(255,255,255,0.2)]">
+                    CONTACT_ME
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Section -->
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 pt-28 pb-20 space-y-16">
+
+        <!-- Hero Section -->
+        <section id="about" class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center pt-6">
+            <div class="lg:col-span-8 space-y-6">
+                <div class="inline-flex items-center gap-2 px-3 py-1 bg-cyber-card border border-cyber-border text-cyber-yellow text-xs font-bold tracking-wide rounded">
+                    <span class="w-2 h-2 rounded-full bg-cyber-yellow animate-ping"></span>
+                    STATUS: READY_FOR_HIRE
+                </div>
+                <h1 class="text-4xl sm:text-6xl font-extrabold text-white tracking-tight leading-tight">
+                    CLOUD & DEVOPS <br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyber-yellow via-cyber-cyan to-cyber-pink">ENGINEER</span>
+                </h1>
+                <p class="text-slate-400 text-sm sm:text-base leading-relaxed max-w-2xl">
+                    I am <strong class="text-white">[Student Name]</strong>. Specialized in building secure, scalable cloud infrastructure and CI/CD pipelines using AWS, Terraform, Docker, and Kubernetes.
+                </p>
+                <div class="flex flex-wrap gap-4 pt-2">
+                    <a href="#" onclick="alert('Link resume PDF here!');" class="bg-cyber-yellow text-black font-extrabold text-xs px-6 py-3 rounded transition shadow-[4px_4px_0px_0px_rgba(255,255,255,0.3)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none flex items-center gap-2">
+                        <i data-lucide="file-down" class="w-4 h-4"></i> DOWNLOAD RESUME
+                    </a>
+                    <a href="https://github.com" target="_blank" class="bg-cyber-card border border-cyber-border text-white font-bold text-xs px-6 py-3 rounded transition hover:border-slate-500 flex items-center gap-2">
+                        <i data-lucide="github" class="w-4 h-4 text-cyber-cyan"></i> GITHUB PROFILE
+                    </a>
+                </div>
+            </div>
+
+            <!-- Profile Frame -->
+            <div class="lg:col-span-4 flex justify-center">
+                <div class="relative bg-cyber-card border-2 border-cyber-border p-3 rounded-xl shadow-[8px_8px_0px_0px_rgba(250,204,21,0.2)]">
+                    <img src="profile.jpg" alt="Student Headshot" class="w-56 h-56 sm:w-64 sm:h-64 object-cover rounded-lg">
+                    <div class="mt-3 text-center">
+                        <span class="text-xs font-bold text-cyber-yellow tracking-wider">CLOUD BOOTCAMP GRADUATE</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tech Matrix Grid -->
+        <section id="skills" class="space-y-6">
+            <div class="flex items-center gap-3 border-b border-cyber-border pb-4">
+                <i data-lucide="cpu" class="w-6 h-6 text-cyber-cyan"></i>
+                <h2 class="text-xl font-bold tracking-wider text-white">TECH_STACK & CAPABILITIES</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="bg-cyber-card border border-cyber-border p-5 rounded-lg hover:border-cyber-yellow transition">
+                    <div class="text-xs font-bold text-cyber-yellow mb-2">// 01. CLOUD_PLATFORM</div>
+                    <h3 class="font-bold text-white text-base mb-3">Amazon Web Services</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        EC2, S3, VPC, IAM, EKS, RDS, CloudWatch, API Gateway, Lambda, CloudFront.
+                    </p>
+                </div>
+
+                <div class="bg-cyber-card border border-cyber-border p-5 rounded-lg hover:border-cyber-cyan transition">
+                    <div class="text-xs font-bold text-cyber-cyan mb-2">// 02. INFRASTRUCTURE_AS_CODE</div>
+                    <h3 class="font-bold text-white text-base mb-3">Automated Provisioning</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        Terraform (HCL modules, remote backend S3/DynamoDB), CloudFormation, Bash.
+                    </p>
+                </div>
+
+                <div class="bg-cyber-card border border-cyber-border p-5 rounded-lg hover:border-cyber-pink transition">
+                    <div class="text-xs font-bold text-cyber-pink mb-2">// 03. CONTAINERS_&_CICD</div>
+                    <h3 class="font-bold text-white text-base mb-3">Deployment & Delivery</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        Docker, Kubernetes (Helm, Manifests), GitHub Actions, Prometheus, Grafana.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Projects -->
+        <section id="projects" class="space-y-6">
+            <div class="flex items-center justify-between border-b border-cyber-border pb-4">
+                <div class="flex items-center gap-3">
+                    <i data-lucide="layers" class="w-6 h-6 text-cyber-yellow"></i>
+                    <h2 class="text-xl font-bold tracking-wider text-white">FEATURED_PROJECTS</h2>
+                </div>
+                <a href="https://github.com" target="_blank" class="text-xs text-cyber-yellow hover:underline font-bold">VIEW ALL REPOS &rarr;</a>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Project 1 -->
+                <div class="bg-cyber-card border border-cyber-border p-6 rounded-lg flex flex-col justify-between hover:border-slate-500 transition">
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center">
+                            <span class="text-[10px] font-bold bg-cyber-yellow/10 text-cyber-yellow border border-cyber-yellow/30 px-2 py-0.5 rounded">TERRAFORM + AWS</span>
+                            <i data-lucide="github" class="w-5 h-5 text-slate-500"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white">Multi-AZ AWS EKS Infrastructure</h3>
+                        <p class="text-xs text-slate-400 leading-relaxed">
+                            Modular Terraform deployment configuring VPC subnets, NAT Gateways, EKS cluster node groups, and IAM roles.
+                        </p>
+                    </div>
+                    <div class="pt-6">
+                        <a href="https://github.com" target="_blank" class="block text-center bg-cyber-bg border border-cyber-border hover:border-cyber-yellow text-xs font-bold py-2 rounded text-white transition">
+                            EXPLORE REPOSITORY
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="bg-cyber-card border border-cyber-border p-6 rounded-lg flex flex-col justify-between hover:border-slate-500 transition">
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center">
+                            <span class="text-[10px] font-bold bg-cyber-cyan/10 text-cyber-cyan border border-cyber-cyan/30 px-2 py-0.5 rounded">GITHUB ACTIONS</span>
+                            <i data-lucide="github" class="w-5 h-5 text-slate-500"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white">Automated Docker Security Pipeline</h3>
+                        <p class="text-xs text-slate-400 leading-relaxed">
+                            CI/CD workflow running automated tests, scanning container images using Trivy, and pushing verified images to AWS ECR.
+                        </p>
+                    </div>
+                    <div class="pt-6">
+                        <a href="https://github.com" target="_blank" class="block text-center bg-cyber-bg border border-cyber-border hover:border-cyber-cyan text-xs font-bold py-2 rounded text-white transition">
+                            EXPLORE REPOSITORY
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Lab Log Summary -->
+        <section id="labs" class="space-y-6">
+            <div class="flex items-center gap-3 border-b border-cyber-border pb-4">
+                <i data-lucide="terminal" class="w-6 h-6 text-cyber-pink"></i>
+                <h2 class="text-xl font-bold tracking-wider text-white">BOOTCAMP_LAB_LOGS</h2>
+            </div>
+
+            <div class="bg-cyber-card border border-cyber-border rounded-lg p-4 space-y-3 font-mono text-xs">
+                <div class="flex justify-between items-center border-b border-cyber-border pb-2 text-slate-400">
+                    <span>LAB_MODULE</span>
+                    <span>SKILLS_VERIFIED</span>
+                    <span>STATUS</span>
+                </div>
+                <div class="flex justify-between items-center text-slate-200">
+                    <span>MOD_01: Linux & AWS VPC</span>
+                    <span>VPC, Gateways, EC2, SSH, Bash</span>
+                    <span class="text-cyber-yellow font-bold">[COMPLETED]</span>
+                </div>
+                <div class="flex justify-between items-center text-slate-200">
+                    <span>MOD_02: Infrastructure as Code</span>
+                    <span>Terraform State, Modules, S3</span>
+                    <span class="text-cyber-yellow font-bold">[COMPLETED]</span>
+                </div>
+                <div class="flex justify-between items-center text-slate-200">
+                    <span>MOD_03: Containers & K8s</span>
+                    <span>Docker, Docker-Compose, EKS</span>
+                    <span class="text-cyber-yellow font-bold">[COMPLETED]</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer id="contact" class="border-t border-cyber-border pt-10 text-center space-y-4">
+            <p class="text-sm font-bold text-white tracking-wider">CONNECT_WITH_ME</p>
+            <div class="flex justify-center gap-6 text-xs text-slate-400 font-bold">
+                <a href="mailto:student@example.com" class="hover:text-cyber-yellow">EMAIL</a>
+                <a href="https://linkedin.com" target="_blank" class="hover:text-cyber-yellow">LINKEDIN</a>
+                <a href="https://github.com" target="_blank" class="hover:text-cyber-yellow">GITHUB</a>
+            </div>
+            <p class="text-[11px] text-slate-600">&copy; <span id="year"></span> [Student Name]. Hosted on GitHub Pages.</p>
+        </footer>
+
+    </main>
+
+    <script>
+        lucide.createIcons();
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

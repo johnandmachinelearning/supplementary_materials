@@ -1,0 +1,1157 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cloud Engineer & DevOps Student Portfolio</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                    },
+                    colors: {
+                        cloud: {
+                            blue: 'var(--cloud-blue, #38bdf8)',
+                            aws: 'var(--cloud-aws, #f97316)',
+                            azure: 'var(--cloud-azure, #06b6d4)',
+                            k8s: 'var(--cloud-k8s, #6366f1)',
+                            emerald: 'var(--cloud-emerald, #10b981)',
+                        }
+                    },
+                    animation: {
+                        'pulse-glow': 'pulseGlow 4s ease-in-out infinite',
+                        'float': 'float 5s ease-in-out infinite',
+                        'radar-sweep': 'radarSweep 4s linear infinite',
+                    },
+                    keyframes: {
+                        pulseGlow: {
+                            '0%, 100%': { opacity: '0.3', transform: 'scale(1)' },
+                            '50%': { opacity: '0.7', transform: 'scale(1.05)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-6px)' },
+                        },
+                        radarSweep: {
+                            '0%': { transform: 'rotate(0deg)' },
+                            '100%': { transform: 'rotate(360deg)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        :root {
+            /* Cloud Dark Console (Default) */
+            --bg-main: #0b0f19;
+            --bg-card: rgba(17, 24, 39, 0.75);
+            --border-card: rgba(56, 189, 248, 0.15);
+            --cloud-primary: #38bdf8;
+            --cloud-accent: #6366f1;
+            --accent-glow: rgba(56, 189, 248, 0.2);
+            --grid-line: rgba(56, 189, 248, 0.05);
+        }
+
+        .theme-aws {
+            --bg-main: #0c0d12;
+            --bg-card: rgba(24, 20, 16, 0.8);
+            --border-card: rgba(249, 115, 22, 0.2);
+            --cloud-primary: #f97316;
+            --cloud-accent: #eab308;
+            --accent-glow: rgba(249, 115, 22, 0.25);
+            --grid-line: rgba(249, 115, 22, 0.05);
+        }
+
+        .theme-azure {
+            --bg-main: #03111e;
+            --bg-card: rgba(10, 30, 50, 0.75);
+            --border-card: rgba(6, 182, 212, 0.2);
+            --cloud-primary: #06b6d4;
+            --cloud-accent: #3b82f6;
+            --accent-glow: rgba(6, 182, 212, 0.25);
+            --grid-line: rgba(6, 182, 212, 0.05);
+        }
+
+        .theme-k8s {
+            --bg-main: #0b0c1e;
+            --bg-card: rgba(20, 22, 50, 0.75);
+            --border-card: rgba(99, 102, 241, 0.25);
+            --cloud-primary: #818cf8;
+            --cloud-accent: #c084fc;
+            --accent-glow: rgba(99, 102, 241, 0.25);
+            --grid-line: rgba(99, 102, 241, 0.05);
+        }
+
+        .theme-terminal {
+            --bg-main: #051009;
+            --bg-card: rgba(10, 28, 18, 0.8);
+            --border-card: rgba(16, 185, 129, 0.25);
+            --cloud-primary: #10b981;
+            --cloud-accent: #22c55e;
+            --accent-glow: rgba(16, 185, 129, 0.25);
+            --grid-line: rgba(16, 185, 129, 0.05);
+        }
+
+        body {
+            background-color: var(--bg-main);
+            transition: background-color 0.4s ease, color 0.4s ease;
+        }
+
+        /* Cloud Blueprint Blueprint Grid Pattern */
+        .blueprint-grid {
+            background-image: 
+                linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+                linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+            background-size: 32px 32px;
+        }
+
+        .cloud-glass {
+            background: var(--bg-card);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--border-card);
+        }
+
+        .cloud-glow {
+            box-shadow: 0 0 25px var(--accent-glow);
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, var(--cloud-primary) 0%, var(--cloud-accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Custom Console Scrollbars */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(11, 15, 25, 0.8);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--cloud-primary);
+        }
+
+        @media print {
+            .no-print, nav, #editorDrawer, #terminalSection, #toast, .action-buttons {
+                display: none !important;
+            }
+            body {
+                background: white !important;
+                color: black !important;
+            }
+            .cloud-glass {
+                background: white !important;
+                border: 1px solid #ccc !important;
+                box-shadow: none !important;
+            }
+            .text-gradient {
+                -webkit-text-fill-color: black !important;
+            }
+        }
+    </style>
+</head>
+<body class="text-slate-200 font-sans antialiased selection:bg-sky-500 selection:text-black min-h-screen flex flex-col relative overflow-x-hidden blueprint-grid">
+
+    <nav class="fixed top-0 left-0 right-0 z-40 cloud-glass border-b border-slate-800/80 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            
+            <!-- Logo & System Status Indicator -->
+            <a href="#hero" class="flex items-center gap-3.5 group">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-sky-500 to-indigo-600 text-slate-950 font-mono font-bold text-lg flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform">
+                    <i class="fa-solid fa-cloud text-slate-950"></i>
+                </div>
+                <div class="flex flex-col">
+                    <div class="flex items-center gap-2">
+                        <span id="navNameDisplay" class="font-mono font-bold text-base tracking-tight text-white group-hover:text-sky-400 transition-colors">alex.cloud</span>
+                        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping" title="Console Active"></span>
+                    </div>
+                    <span id="navTaglineDisplay" class="text-[11px] font-mono text-sky-400 -mt-0.5 tracking-wider">AWS / DEVOPS / KUBERNETES</span>
+                </div>
+            </a>
+
+            <!-- Navigation Links -->
+            <div class="hidden md:flex items-center gap-7 text-xs font-mono text-slate-300">
+                <a href="#hero" class="hover:text-sky-400 transition-colors flex items-center gap-1.5"><i class="fa-solid fa-server text-[10px]"></i> Metrics</a>
+                <a href="#certs" class="hover:text-sky-400 transition-colors flex items-center gap-1.5"><i class="fa-solid fa-certificate text-[10px]"></i> Certs</a>
+                <a href="#skills" class="hover:text-sky-400 transition-colors flex items-center gap-1.5"><i class="fa-solid fa-cubes text-[10px]"></i> Tooling</a>
+                <a href="#projects" class="hover:text-sky-400 transition-colors flex items-center gap-1.5"><i class="fa-solid fa-diagram-project text-[10px]"></i> Architecture</a>
+                <a href="#terminal" class="hover:text-sky-400 transition-colors flex items-center gap-1.5"><i class="fa-solid fa-terminal text-[10px]"></i> CLI Terminal</a>
+                <a href="#contact" class="hover:text-sky-400 transition-colors flex items-center gap-1.5"><i class="fa-solid fa-paper-plane text-[10px]"></i> Contact</a>
+            </div>
+
+            <!-- Action Controls -->
+            <div class="flex items-center gap-3">
+                <button onclick="window.print()" title="Print / Export PDF Portfolio" class="p-2.5 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800 transition-all">
+                    <i class="fa-solid fa-print text-sm"></i>
+                </button>
+
+                <!-- Live Editor Drawer Toggle -->
+                <button onclick="toggleEditorDrawer()" class="flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-mono font-bold bg-gradient-to-r from-sky-500 to-indigo-600 text-slate-950 shadow-lg shadow-sky-500/20 hover:shadow-sky-500/40 hover:scale-[1.02] active:scale-[0.98] transition-all">
+                    <i class="fa-solid fa-sliders"></i>
+                    <span class="hidden sm:inline">Customize Profile</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <section id="hero" class="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden">
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-sky-500/10 rounded-full blur-[120px] pointer-events-none animate-pulse-glow"></div>
+        <div class="absolute top-1/3 right-10 w-[400px] h-[400px] bg-indigo-500/10 rounded-full blur-[100px] pointer-events-none animate-float"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+                
+                <!-- Cloud Profile Avatar Container -->
+                <div class="relative shrink-0 group">
+                    <div class="absolute -inset-1 bg-gradient-to-r from-sky-500 via-indigo-500 to-emerald-400 rounded-3xl blur opacity-70 group-hover:opacity-100 transition duration-700"></div>
+                    <div class="relative w-56 h-56 sm:w-64 sm:h-64 rounded-3xl overflow-hidden border-2 border-slate-700 bg-slate-900 shadow-2xl">
+                        <img id="displayAvatar" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=600" alt="Cloud Student Profile Avatar" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-85"></div>
+                        <div class="absolute bottom-3 left-3 right-3 px-3 py-1.5 rounded-xl bg-slate-950/85 border border-slate-800 text-[11px] font-mono text-sky-400 flex items-center justify-between backdrop-blur-sm">
+                            <span class="flex items-center gap-2">
+                                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                                <span id="displayStatus">Operational / Open for Hire</span>
+                            </span>
+                            <i class="fa-solid fa-server text-xs opacity-60"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hero Content & Live System Metrics Panel -->
+                <div class="flex-1 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono bg-sky-950/80 text-sky-400 border border-sky-800/80 shadow-sm">
+                        <i class="fa-solid fa-terminal"></i>
+                        <span id="displayDegree">B.S. Cloud Infrastructure & Cyber Security '26</span>
+                    </div>
+
+                    <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight">
+                        Hi, I'm <span id="displayName" class="text-gradient">Alex Vance</span>
+                    </h1>
+
+                    <p id="displayTagline" class="text-base sm:text-xl font-medium text-slate-300 max-w-2xl leading-relaxed">
+                        Cloud Solutions Architect & DevOps Engineer automating multi-cloud infrastructure, CI/CD pipelines, and Kubernetes clusters.
+                    </p>
+
+                    <p id="displayBio" class="text-xs sm:text-sm text-slate-400 max-w-2xl leading-relaxed font-mono">
+                        Passionate about Infrastructure as Code (Terraform), GitOps workflows, zero-downtime deployments, and cloud cost optimization. Open-source contributor.
+                    </p>
+
+                    <!-- CTAs & Social Links -->
+                    <div class="pt-2 flex flex-wrap items-center justify-center lg:justify-start gap-3">
+                        <a href="#projects" class="px-5 py-3 rounded-xl bg-gradient-to-r from-sky-500 to-indigo-600 hover:from-sky-400 hover:to-indigo-500 text-slate-950 font-mono font-bold text-xs uppercase tracking-wider shadow-lg shadow-sky-500/20 transition-all hover:scale-[1.02] active:scale-[0.98] flex items-center gap-2">
+                            <i class="fa-solid fa-diagram-project"></i> Explore Architecture
+                        </a>
+                        <a id="displayResumeBtn" href="#" target="_blank" class="px-5 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-700/80 font-mono font-bold text-xs uppercase tracking-wider transition-all hover:scale-[1.02] active:scale-[0.98] inline-flex items-center gap-2">
+                            <i class="fa-solid fa-file-pdf text-sky-400"></i> View Resume
+                        </a>
+
+                        <!-- Social Links Container -->
+                        <div class="flex items-center gap-1 pl-2 border-l border-slate-800" id="socialLinksContainer">
+                            <!-- Populated dynamically -->
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Live Metrics Dashboard Bar -->
+            <div class="mt-14 grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6 border-t border-slate-800/80">
+                <div class="cloud-glass p-4 rounded-2xl border border-slate-800 text-center sm:text-left">
+                    <span class="text-[10px] font-mono text-slate-500 uppercase tracking-wider block">Clouds Managed</span>
+                    <span id="statClouds" class="text-2xl font-mono font-bold text-sky-400 mt-1 block">3 Providers</span>
+                    <span class="text-[10px] text-slate-400 font-mono mt-0.5 block">AWS, Azure, GCP</span>
+                </div>
+                <div class="cloud-glass p-4 rounded-2xl border border-slate-800 text-center sm:text-left">
+                    <span class="text-[10px] font-mono text-slate-500 uppercase tracking-wider block">CI/CD Pipelines</span>
+                    <span id="statPipelines" class="text-2xl font-mono font-bold text-indigo-400 mt-1 block">140+ Runs</span>
+                    <span class="text-[10px] text-slate-400 font-mono mt-0.5 block">GitHub Actions & Helm</span>
+                </div>
+                <div class="cloud-glass p-4 rounded-2xl border border-slate-800 text-center sm:text-left">
+                    <span class="text-[10px] font-mono text-slate-500 uppercase tracking-wider block">Certifications</span>
+                    <span id="statCerts" class="text-2xl font-mono font-bold text-emerald-400 mt-1 block">4 Earned</span>
+                    <span class="text-[10px] text-slate-400 font-mono mt-0.5 block">AWS & CNCF CKA</span>
+                </div>
+                <div class="cloud-glass p-4 rounded-2xl border border-slate-800 text-center sm:text-left">
+                    <span class="text-[10px] font-mono text-slate-500 uppercase tracking-wider block">System Uptime</span>
+                    <span id="statUptime" class="text-2xl font-mono font-bold text-amber-400 mt-1 block">99.99%</span>
+                    <span class="text-[10px] text-slate-400 font-mono mt-0.5 block">Cluster Health: Green</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="certs" class="py-16 cloud-glass border-y border-slate-800/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+                <div>
+                    <span class="text-xs font-mono font-bold uppercase tracking-widest text-sky-400">Verified Credentials</span>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-white mt-1">Cloud Certifications & Badges</h2>
+                </div>
+                <div class="text-xs font-mono text-slate-400">
+                    <i class="fa-solid fa-shield-halved text-emerald-400 mr-1"></i> All credentials verified by issuers
+                </div>
+            </div>
+
+            <!-- Certs Grid -->
+            <div id="certsContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Dynamically populated certifications cards -->
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="py-20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-14 space-y-2">
+                <span class="text-xs font-mono font-bold uppercase tracking-widest text-sky-400">Infrastructure Matrix</span>
+                <h2 class="text-3xl font-extrabold text-white">DevOps & Cloud Stack Proficiency</h2>
+                <p class="text-xs text-slate-400 font-mono">Tools and technologies used in production environments and lab configurations.</p>
+            </div>
+
+            <div id="skillsContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Dynamically populated skill categories -->
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="py-20 cloud-glass border-y border-slate-800/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+                <div>
+                    <span class="text-xs font-mono font-bold uppercase tracking-widest text-sky-400">Production & Lab Deployments</span>
+                    <h2 class="text-3xl font-extrabold text-white mt-1">Cloud Architecture Projects</h2>
+                </div>
+
+                <!-- Tag Filter Buttons -->
+                <div id="projectFilters" class="flex flex-wrap gap-2">
+                    <!-- Filters dynamically rendered -->
+                </div>
+            </div>
+
+            <!-- Projects Grid -->
+            <div id="projectsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Dynamically rendered project cards -->
+            </div>
+        </div>
+    </section>
+
+    <section id="terminal" class="py-20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-8 space-y-2">
+                    <span class="text-xs font-mono font-bold uppercase tracking-widest text-sky-400">Interactive Console</span>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-white">DevOps CLI Terminal Sandbox</h2>
+                    <p class="text-xs font-mono text-slate-400">Type <code class="text-sky-400 bg-slate-900 px-1.5 py-0.5 rounded">help</code> to explore available cloud commands.</p>
+                </div>
+
+                <!-- Terminal Window Wrapper -->
+                <div class="rounded-2xl bg-slate-950 border border-slate-800 shadow-2xl overflow-hidden font-mono text-xs">
+                    <!-- Terminal Header Bar -->
+                    <div class="bg-slate-900/90 px-4 py-3 border-b border-slate-800 flex items-center justify-between">
+                        <div class="flex items-center gap-2">
+                            <span class="w-3 h-3 rounded-full bg-rose-500/80 inline-block"></span>
+                            <span class="w-3 h-3 rounded-full bg-amber-500/80 inline-block"></span>
+                            <span class="w-3 h-3 rounded-full bg-emerald-500/80 inline-block"></span>
+                            <span class="text-slate-400 text-[11px] ml-2">bash - alex@cloud-control:~</span>
+                        </div>
+                        <div class="text-slate-500 text-[10px]">
+                            <i class="fa-solid fa-lock text-emerald-400 mr-1"></i> SSH ACTIVE
+                        </div>
+                    </div>
+
+                    <!-- Terminal Output Console -->
+                    <div id="terminalBody" class="p-5 h-72 overflow-y-auto space-y-2 text-slate-300">
+                        <div>Welcome to <span class="text-sky-400 font-bold">CloudOS Terminal v2.4</span> [x86_64-aws-linux]</div>
+                        <div>Type <span class="text-emerald-400">help</span> to view available system commands.</div>
+                    </div>
+
+                    <!-- Terminal Prompt Input Form -->
+                    <form onsubmit="handleTerminalSubmit(event)" class="bg-slate-900/50 p-3 border-t border-slate-800/80 flex items-center gap-2">
+                        <span class="text-emerald-400 font-bold">alex@cloud-console:~$</span>
+                        <input type="text" id="terminalInput" placeholder="e.g. status, certs, projects, deploy-resume, help" autocomplete="off" class="flex-1 bg-transparent text-white focus:outline-none font-mono text-xs">
+                        <button type="submit" class="px-3 py-1 rounded bg-sky-500 text-slate-950 font-bold text-[10px] uppercase hover:bg-sky-400">Run</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-20 cloud-glass border-t border-slate-800/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-4xl mx-auto rounded-3xl bg-slate-900/90 border border-slate-800 p-8 sm:p-12 shadow-2xl relative overflow-hidden">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                    
+                    <!-- Contact Info -->
+                    <div class="space-y-6">
+                        <div>
+                            <span class="text-xs font-mono font-bold uppercase tracking-widest text-sky-400">Initialize Connection</span>
+                            <h2 class="text-2xl sm:text-3xl font-extrabold text-white mt-1">Deploy A Message</h2>
+                        </div>
+                        <p class="text-slate-400 text-xs sm:text-sm leading-relaxed">
+                            Looking to hire a Cloud Engineer Intern / Full-time junior, discuss AWS/Kubernetes architecture, or build IaC pipelines? Send a message directly.
+                        </p>
+
+                        <div class="space-y-4 pt-2 font-mono text-xs">
+                            <div class="flex items-center gap-4 text-slate-300">
+                                <div class="w-10 h-10 rounded-xl bg-slate-800 text-sky-400 flex items-center justify-center shrink-0 border border-slate-700">
+                                    <i class="fa-solid fa-envelope text-sm"></i>
+                                </div>
+                                <div>
+                                    <p class="text-[10px] font-mono text-slate-500 uppercase">Direct Email</p>
+                                    <a id="displayContactEmail" href="mailto:alex.vance@cloud.io" class="hover:underline font-semibold text-white">alex.vance@cloud.io</a>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center gap-4 text-slate-300">
+                                <div class="w-10 h-10 rounded-xl bg-slate-800 text-indigo-400 flex items-center justify-center shrink-0 border border-slate-700">
+                                    <i class="fa-solid fa-location-dot text-sm"></i>
+                                </div>
+                                <div>
+                                    <p class="text-[10px] font-mono text-slate-500 uppercase">Primary Region</p>
+                                    <p id="displayContactLocation" class="font-semibold text-white">us-west-2 (Seattle, WA)</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Form Simulator -->
+                    <form onsubmit="handleContactSubmit(event)" class="space-y-4 font-mono">
+                        <div>
+                            <label class="block text-[11px] text-slate-400 mb-1">Your Name / Organization</label>
+                            <input type="text" required placeholder="e.g. AWS Recruiter / DevOps Manager" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-xs text-white focus:outline-none focus:border-sky-500 transition-colors">
+                        </div>
+                        <div>
+                            <label class="block text-[11px] text-slate-400 mb-1">Email Address</label>
+                            <input type="email" required placeholder="recruiter@tech.io" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-xs text-white focus:outline-none focus:border-sky-500 transition-colors">
+                        </div>
+                        <div>
+                            <label class="block text-[11px] text-slate-400 mb-1">Message Body</label>
+                            <textarea rows="3" required placeholder="Hi Alex, we have an open DevOps Cloud Engineer role..." class="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-xs text-white focus:outline-none focus:border-sky-500 transition-colors resize-none"></textarea>
+                        </div>
+                        <button type="submit" class="w-full py-3 rounded-xl bg-gradient-to-r from-sky-500 to-indigo-600 text-slate-950 font-bold text-xs uppercase tracking-wider shadow-lg shadow-sky-500/20 hover:scale-[1.01] active:scale-[0.99] transition-all">
+                            Transmit Message <i class="fa-solid fa-paper-plane ml-1"></i>
+                        </button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 border-t border-slate-800/80 text-center text-xs font-mono text-slate-500">
+        <p>© <span id="footerYear">2026</span> <span id="footerName">Alex Vance</span>. Built with Cloud Student Portfolio Customizer.</p>
+    </footer>
+
+    <div id="projectModal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md hidden flex items-center justify-center p-4">
+        <div class="bg-slate-900 w-full max-w-3xl rounded-3xl overflow-hidden border border-slate-800 shadow-2xl flex flex-col max-h-[90vh]">
+            <!-- Modal Header -->
+            <div class="p-5 border-b border-slate-800 flex items-center justify-between bg-slate-950">
+                <div class="flex items-center gap-2">
+                    <i class="fa-solid fa-diagram-project text-sky-400"></i>
+                    <h3 id="modalTitle" class="font-bold text-white text-base font-mono"></h3>
+                </div>
+                <button onclick="closeProjectModal()" class="w-8 h-8 rounded-full bg-slate-800 text-slate-400 hover:text-white flex items-center justify-center">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- Modal Content -->
+            <div class="p-6 overflow-y-auto space-y-6">
+                <!-- Diagram Visual Preview -->
+                <div class="relative h-64 rounded-2xl overflow-hidden bg-slate-950 border border-slate-800">
+                    <img id="modalImg" src="" alt="Architecture Diagram" class="w-full h-full object-cover">
+                </div>
+
+                <div id="modalImpactBadge" class="p-3 rounded-xl bg-sky-950/50 border border-sky-800/60 text-sky-300 font-mono text-xs flex items-center gap-2">
+                    <i class="fa-solid fa-chart-line text-emerald-400"></i>
+                    <span id="modalImpactText">Impact Metric: Optimized Cloud Cost by 35%</span>
+                </div>
+
+                <div class="space-y-2">
+                    <h4 class="text-xs font-mono font-bold uppercase text-slate-400">Architecture Overview</h4>
+                    <p id="modalDesc" class="text-slate-300 text-xs sm:text-sm leading-relaxed"></p>
+                </div>
+
+                <div class="space-y-2">
+                    <h4 class="text-xs font-mono font-bold uppercase text-slate-400">Technologies & Services</h4>
+                    <div id="modalTags" class="flex flex-wrap gap-2"></div>
+                </div>
+
+                <!-- Action Links -->
+                <div class="pt-4 border-t border-slate-800/80 flex items-center gap-4">
+                    <a id="modalDemoLink" href="#" target="_blank" class="px-5 py-2.5 rounded-xl bg-sky-500 text-slate-950 text-xs font-mono font-bold uppercase flex items-center gap-2 hover:bg-sky-400">
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i> Live Console / Docs
+                    </a>
+                    <a id="modalGithubLink" href="#" target="_blank" class="px-5 py-2.5 rounded-xl bg-slate-800 text-slate-200 text-xs font-mono font-bold uppercase flex items-center gap-2 hover:bg-slate-700">
+                        <i class="fa-brands fa-github"></i> Terraform / GitHub Repo
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="editorDrawer" class="fixed inset-y-0 right-0 w-full max-w-md bg-slate-900 border-l border-slate-800 shadow-2xl z-50 transform translate-x-full transition-transform duration-300 flex flex-col">
+        
+        <!-- Drawer Header -->
+        <div class="p-5 border-b border-slate-800 flex items-center justify-between bg-slate-950">
+            <div class="flex items-center gap-2.5">
+                <i class="fa-solid fa-sliders text-sky-400"></i>
+                <h3 class="font-mono font-bold text-white text-base">Cloud Profile Customizer</h3>
+            </div>
+            <button onclick="toggleEditorDrawer()" class="p-2 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+        </div>
+
+        <!-- Customizer Navigation Tabs -->
+        <div class="flex border-b border-slate-800 bg-slate-950/80 text-[11px] font-mono overflow-x-auto">
+            <button onclick="switchTab('general')" id="tabBtn-general" class="tab-btn px-3.5 py-2.5 font-semibold text-sky-400 border-b-2 border-sky-400 shrink-0">General</button>
+            <button onclick="switchTab('theme')" id="tabBtn-theme" class="tab-btn px-3.5 py-2.5 font-semibold text-slate-400 border-b-2 border-transparent shrink-0">Themes</button>
+            <button onclick="switchTab('certs')" id="tabBtn-certs" class="tab-btn px-3.5 py-2.5 font-semibold text-slate-400 border-b-2 border-transparent shrink-0">Certs</button>
+            <button onclick="switchTab('skills')" id="tabBtn-skills" class="tab-btn px-3.5 py-2.5 font-semibold text-slate-400 border-b-2 border-transparent shrink-0">Skills</button>
+            <button onclick="switchTab('projects')" id="tabBtn-projects" class="tab-btn px-3.5 py-2.5 font-semibold text-slate-400 border-b-2 border-transparent shrink-0">Projects</button>
+            <button onclick="switchTab('backup')" id="tabBtn-backup" class="tab-btn px-3.5 py-2.5 font-semibold text-slate-400 border-b-2 border-transparent shrink-0">Backup</button>
+        </div>
+
+        <!-- Drawer Content Container -->
+        <div class="flex-1 overflow-y-auto p-6 space-y-6 text-xs font-mono">
+            
+            <!-- TAB 1: General Profile Tab -->
+            <div id="tab-general" class="tab-content space-y-4">
+                <h4 class="font-bold uppercase text-sky-400">Profile & Contact Info</h4>
+                <div>
+                    <label class="block text-slate-400 mb-1">Full Name</label>
+                    <input type="text" id="editName" oninput="updateField('name', this.value)" class="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-white">
+                </div>
+                <div>
+                    <label class="block text-slate-400 mb-1">Degree / Role Title</label>
+                    <input type="text" id="editDegree" oninput="updateField('degree', this.value)" class="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-white">
+                </div>
+                <div>
+                    <label class="block text-slate-400 mb-1">Hero Tagline</label>
+                    <input type="text" id="editTagline" oninput="updateField('tagline', this.value)" class="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-white">
+                </div>
+                <div>
+                    <label class="block text-slate-400 mb-1">Full Bio</label>
+                    <textarea id="editBio" rows="3" oninput="updateField('bio', this.value)" class="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-white resize-none"></textarea>
+                </div>
+                <div>
+                    <label class="block text-slate-400 mb-1">Avatar Image URL</label>
+                    <input type="text" id="editAvatar" oninput="updateField('avatar', this.value)" class="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-white text-[11px]">
+                </div>
+                <div>
+                    <label class="block text-slate-400 mb-1">Contact Email</label>
+                    <input type="text" id="editEmail" oninput="updateField('email', this.value)" class="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-white">
+                </div>
+                <div>
+                    <label class="block text-slate-400 mb-1">Region / Location</label>
+                    <input type="text" id="editLocation" oninput="updateField('location', this.value)" class="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-white">
+                </div>
+            </div>
+
+            <!-- TAB 2: Themes Palette Tab -->
+            <div id="tab-theme" class="tab-content space-y-4 hidden">
+                <h4 class="font-bold uppercase text-sky-400">Cloud Console Themes</h4>
+                <div class="grid grid-cols-1 gap-3">
+                    <button onclick="setPresetTheme('default')" class="p-3 rounded-2xl border text-left flex items-center justify-between bg-slate-950 border-slate-800 hover:border-sky-500 transition-colors">
+                        <div class="flex items-center gap-3">
+                            <div class="w-4 h-4 rounded-full bg-sky-400"></div>
+                            <span class="font-semibold text-white">Cloud Dark Console</span>
+                        </div>
+                        <i class="fa-solid fa-chevron-right text-slate-600"></i>
+                    </button>
+                    <button onclick="setPresetTheme('aws')" class="p-3 rounded-2xl border text-left flex items-center justify-between bg-slate-950 border-slate-800 hover:border-orange-500 transition-colors">
+                        <div class="flex items-center gap-3">
+                            <div class="w-4 h-4 rounded-full bg-orange-500"></div>
+                            <span class="font-semibold text-white">AWS Sunset</span>
+                        </div>
+                        <i class="fa-solid fa-chevron-right text-slate-600"></i>
+                    </button>
+                    <button onclick="setPresetTheme('azure')" class="p-3 rounded-2xl border text-left flex items-center justify-between bg-slate-950 border-slate-800 hover:border-cyan-500 transition-colors">
+                        <div class="flex items-center gap-3">
+                            <div class="w-4 h-4 rounded-full bg-cyan-400"></div>
+                            <span class="font-semibold text-white">Azure Cyber</span>
+                        </div>
+                        <i class="fa-solid fa-chevron-right text-slate-600"></i>
+                    </button>
+                    <button onclick="setPresetTheme('k8s')" class="p-3 rounded-2xl border text-left flex items-center justify-between bg-slate-950 border-slate-800 hover:border-indigo-500 transition-colors">
+                        <div class="flex items-center gap-3">
+                            <div class="w-4 h-4 rounded-full bg-indigo-500"></div>
+                            <span class="font-semibold text-white">Kubernetes Indigo</span>
+                        </div>
+                        <i class="fa-solid fa-chevron-right text-slate-600"></i>
+                    </button>
+                    <button onclick="setPresetTheme('terminal')" class="p-3 rounded-2xl border text-left flex items-center justify-between bg-slate-950 border-slate-800 hover:border-emerald-500 transition-colors">
+                        <div class="flex items-center gap-3">
+                            <div class="w-4 h-4 rounded-full bg-emerald-400"></div>
+                            <span class="font-semibold text-white">Terminal Neon</span>
+                        </div>
+                        <i class="fa-solid fa-chevron-right text-slate-600"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- TAB 3: Certifications Manager -->
+            <div id="tab-certs" class="tab-content space-y-4 hidden">
+                <h4 class="font-bold uppercase text-sky-400">Certifications Manager</h4>
+                <p class="text-slate-400 text-xs">Add new credentials or cloud badges to your portfolio.</p>
+                <button onclick="addNewCert()" class="w-full py-2.5 rounded-xl bg-sky-500 text-slate-950 font-bold uppercase tracking-wider">
+                    <i class="fa-solid fa-plus mr-1"></i> Add New Certification
+                </button>
+            </div>
+
+            <!-- TAB 4: Tech Stack Customizer -->
+            <div id="tab-skills" class="tab-content space-y-4 hidden">
+                <h4 class="font-bold uppercase text-sky-400">Skills & Tooling</h4>
+                <p class="text-slate-400 text-xs">Manage cloud categories and tool proficiencies.</p>
+                <button onclick="addNewSkillCategory()" class="w-full py-2.5 rounded-xl bg-sky-500 text-slate-950 font-bold uppercase tracking-wider">
+                    <i class="fa-solid fa-plus mr-1"></i> Add Skill Category
+                </button>
+            </div>
+
+            <!-- TAB 5: Projects Customizer -->
+            <div id="tab-projects" class="tab-content space-y-4 hidden">
+                <h4 class="font-bold uppercase text-sky-400">Cloud Projects Manager</h4>
+                <button onclick="addNewProject()" class="w-full py-2.5 rounded-xl bg-sky-500 text-slate-950 font-bold uppercase tracking-wider">
+                    <i class="fa-solid fa-plus mr-1"></i> Add New Cloud Project
+                </button>
+            </div>
+
+            <!-- TAB 6: Backup & Export -->
+            <div id="tab-backup" class="tab-content space-y-4 hidden">
+                <h4 class="font-bold uppercase text-sky-400">Export & Backup</h4>
+                <p class="text-slate-400 leading-relaxed">Download your entire cloud portfolio config or load an existing JSON file.</p>
+                
+                <div class="space-y-2">
+                    <button onclick="exportJSON()" class="w-full py-2.5 rounded-xl bg-slate-950 border border-slate-800 hover:border-sky-500 text-white font-semibold flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-download text-sky-400"></i> Export JSON
+                    </button>
+                    <button onclick="document.getElementById('importFileInput').click()" class="w-full py-2.5 rounded-xl bg-slate-950 border border-slate-800 hover:border-sky-500 text-white font-semibold flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-upload text-sky-400"></i> Import JSON
+                    </button>
+                    <input type="file" id="importFileInput" accept=".json" class="hidden" onchange="importJSON(event)">
+                </div>
+
+                <div class="pt-4 border-t border-slate-800">
+                    <button onclick="resetDataToDefault()" class="w-full py-2.5 rounded-xl bg-rose-950 text-rose-300 border border-rose-900 font-semibold flex items-center justify-center gap-2 hover:bg-rose-900">
+                        <i class="fa-solid fa-rotate-left"></i> Reset Defaults
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Drawer Footer -->
+        <div class="p-4 border-t border-slate-800 bg-slate-950">
+            <button onclick="copyDataToClipboard()" class="w-full py-3 rounded-xl bg-sky-500 text-slate-950 font-mono font-bold uppercase tracking-wider text-xs shadow-lg flex items-center justify-center gap-2">
+                <i class="fa-regular fa-copy"></i> Copy Config JSON
+            </button>
+        </div>
+    </div>
+
+    <!-- Toast Banner -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none px-5 py-3 rounded-xl bg-slate-900 border border-sky-500/50 text-white shadow-2xl text-xs font-mono flex items-center gap-2.5">
+        <i class="fa-solid fa-circle-check text-emerald-400"></i>
+        <span id="toastMessage">Configuration Updated</span>
+    </div>
+
+    <script>
+        // Default Cloud & DevOps Student Portfolio Data
+        const defaultPortfolioData = {
+            theme: "default",
+            name: "Alex Vance",
+            degree: "B.S. Cloud Infrastructure & Cyber Security '26",
+            tagline: "Cloud Solutions Architect & DevOps Student Engineer automating multi-cloud infrastructure & Kubernetes clusters.",
+            bio: "Specializing in Infrastructure as Code (Terraform), GitOps CI/CD pipelines, zero-downtime microservice deployments, and AWS cloud cost optimization.",
+            status: "Operational / Open for Hire",
+            avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=600",
+            resumeUrl: "#",
+            email: "alex.vance@cloud.io",
+            location: "us-west-2 (Seattle, WA)",
+            socials: {
+                github: "https://github.com",
+                linkedin: "https://linkedin.com",
+                twitter: "https://twitter.com"
+            },
+            certs: [
+                {
+                    title: "AWS Certified Solutions Architect",
+                    issuer: "Amazon Web Services",
+                    code: "SAA-C03",
+                    badgeIcon: "fa-brands fa-aws text-orange-400",
+                    verifyUrl: "https://aws.amazon.com/verification",
+                    date: "2025"
+                },
+                {
+                    title: "Certified Kubernetes Administrator (CKA)",
+                    issuer: "CNCF / Linux Foundation",
+                    code: "CKA-2025",
+                    badgeIcon: "fa-solid fa-dharmachakra text-indigo-400",
+                    verifyUrl: "https://cncf.io",
+                    date: "2025"
+                },
+                {
+                    title: "HashiCorp Certified: Terraform Associate",
+                    issuer: "HashiCorp",
+                    code: "TA-003",
+                    badgeIcon: "fa-solid fa-cubes text-purple-400",
+                    verifyUrl: "https://hashicorp.com",
+                    date: "2024"
+                },
+                {
+                    title: "Microsoft Certified: Azure Fundamentals",
+                    issuer: "Microsoft",
+                    code: "AZ-900",
+                    badgeIcon: "fa-brands fa-microsoft text-cyan-400",
+                    verifyUrl: "https://microsoft.com",
+                    date: "2024"
+                }
+            ],
+            skills: [
+                {
+                    category: "Cloud Providers",
+                    items: [
+                        { name: "AWS (EKS, EC2, S3, Lambda, VPC)", level: 92 },
+                        { name: "Microsoft Azure (AKS, Functions)", level: 80 },
+                        { name: "Google Cloud Platform (GKE)", level: 75 }
+                    ]
+                },
+                {
+                    category: "IaC & Automation",
+                    items: [
+                        { name: "Terraform / OpenTofu", level: 90 },
+                        { name: "Ansible Playbooks", level: 82 },
+                        { name: "AWS CloudFormation / CDK", level: 78 }
+                    ]
+                },
+                {
+                    category: "Containers & CI/CD",
+                    items: [
+                        { name: "Kubernetes / Helm / ArgoCD", level: 88 },
+                        { name: "Docker & ContainerD", level: 95 },
+                        { name: "GitHub Actions & Jenkins", level: 86 }
+                    ]
+                }
+            ],
+            projects: [
+                {
+                    id: 1,
+                    title: "Multi-Region EKS GitOps Infrastructure",
+                    category: "Kubernetes",
+                    description: "Automated high-availability Kubernetes cluster provisioning across AWS regions using Terraform, ArgoCD GitOps, and Prometheus observability.",
+                    tags: ["AWS", "Kubernetes", "Terraform", "ArgoCD"],
+                    impact: "Achieved 99.99% availability & automated failover",
+                    image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=600",
+                    github: "https://github.com",
+                    demo: "https://example.com"
+                },
+                {
+                    id: 2,
+                    title: "Serverless Microservices Cloud Migration",
+                    category: "AWS",
+                    description: "Migrated monolithic legacy app to AWS Lambda, API Gateway, and DynamoDB with automated CI/CD deployment via GitHub Actions.",
+                    tags: ["AWS Lambda", "Serverless", "Python", "CI/CD"],
+                    impact: "Reduced monthly infrastructure spend by 42%",
+                    image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&q=80&w=600",
+                    github: "https://github.com",
+                    demo: "https://example.com"
+                },
+                {
+                    id: 3,
+                    title: "Zero-Trust Azure Hybrid Architecture",
+                    category: "Azure",
+                    description: "Designed secure Azure network hub-and-spoke model with Terraform, Azure Sentinel monitoring, and Key Vault secret management.",
+                    tags: ["Azure", "Terraform", "Security", "Zero-Trust"],
+                    impact: "100% compliance with CIS Security Benchmarks",
+                    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&q=80&w=600",
+                    github: "https://github.com",
+                    demo: "https://example.com"
+                }
+            ]
+        };
+
+        let portfolioData = {};
+        let activeFilter = 'All';
+
+        window.addEventListener('DOMContentLoaded', () => {
+            loadStoredData();
+            renderAll();
+        });
+
+        function loadStoredData() {
+            const saved = localStorage.getItem('cloud_portfolio_data');
+            if (saved) {
+                try {
+                    portfolioData = JSON.parse(saved);
+                } catch (e) {
+                    portfolioData = JSON.parse(JSON.stringify(defaultPortfolioData));
+                }
+            } else {
+                portfolioData = JSON.parse(JSON.stringify(defaultPortfolioData));
+            }
+        }
+
+        function saveData() {
+            localStorage.setItem('cloud_portfolio_data', JSON.stringify(portfolioData));
+            renderAll();
+        }
+
+        function renderAll() {
+            setPresetTheme(portfolioData.theme || 'default', false);
+
+            document.getElementById('navNameDisplay').textContent = portfolioData.name;
+            document.getElementById('displayName').textContent = portfolioData.name;
+            document.getElementById('displayDegree').textContent = portfolioData.degree;
+            document.getElementById('displayTagline').textContent = portfolioData.tagline;
+            document.getElementById('displayBio').textContent = portfolioData.bio;
+            document.getElementById('displayStatus').textContent = portfolioData.status;
+            document.getElementById('displayAvatar').src = portfolioData.avatar;
+            document.getElementById('displayResumeBtn').href = portfolioData.resumeUrl || '#';
+
+            document.getElementById('displayContactEmail').textContent = portfolioData.email;
+            document.getElementById('displayContactEmail').href = `mailto:${portfolioData.email}`;
+            document.getElementById('displayContactLocation').textContent = portfolioData.location;
+            document.getElementById('footerName').textContent = portfolioData.name;
+
+            renderSocials();
+            renderCerts();
+            renderSkills();
+            renderProjectFilters();
+            renderProjects();
+            syncDrawerInputs();
+        }
+
+        function renderSocials() {
+            const container = document.getElementById('socialLinksContainer');
+            container.innerHTML = '';
+            if (portfolioData.socials?.github) {
+                container.innerHTML += `<a href="${portfolioData.socials.github}" target="_blank" class="p-2 text-slate-400 hover:text-sky-400 transition-colors"><i class="fa-brands fa-github text-base"></i></a>`;
+            }
+            if (portfolioData.socials?.linkedin) {
+                container.innerHTML += `<a href="${portfolioData.socials.linkedin}" target="_blank" class="p-2 text-slate-400 hover:text-sky-400 transition-colors"><i class="fa-brands fa-linkedin text-base"></i></a>`;
+            }
+            if (portfolioData.socials?.twitter) {
+                container.innerHTML += `<a href="${portfolioData.socials.twitter}" target="_blank" class="p-2 text-slate-400 hover:text-sky-400 transition-colors"><i class="fa-brands fa-x-twitter text-base"></i></a>`;
+            }
+        }
+
+        function renderCerts() {
+            const container = document.getElementById('certsContainer');
+            container.innerHTML = portfolioData.certs.map((c, idx) => `
+                <div class="p-5 rounded-2xl bg-slate-900/80 border border-slate-800 hover:border-sky-500/50 transition-all flex flex-col justify-between space-y-4 relative group">
+                    <button onclick="removeCert(${idx})" class="absolute top-3 right-3 text-slate-600 hover:text-rose-500 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <i class="fa-solid fa-trash text-xs"></i>
+                    </button>
+                    <div>
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="w-10 h-10 rounded-xl bg-slate-950 flex items-center justify-center border border-slate-800 text-xl">
+                                <i class="${c.badgeIcon}"></i>
+                            </div>
+                            <div>
+                                <span class="text-[10px] font-mono text-emerald-400 uppercase tracking-wider block">VERIFIED</span>
+                                <span class="text-[11px] font-mono text-slate-400">${c.issuer}</span>
+                            </div>
+                        </div>
+                        <h4 class="font-bold text-white text-sm leading-snug">${c.title}</h4>
+                        <span class="text-[10px] font-mono text-slate-500 mt-1 block">ID: ${c.code} (${c.date})</span>
+                    </div>
+                    <a href="${c.verifyUrl}" target="_blank" class="text-xs font-mono text-sky-400 hover:underline flex items-center gap-1">
+                        Verify Credential <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                    </a>
+                </div>
+            `).join('');
+        }
+
+        function renderSkills() {
+            const container = document.getElementById('skillsContainer');
+            container.innerHTML = portfolioData.skills.map(group => `
+                <div class="bg-slate-900/60 p-6 rounded-2xl border border-slate-800 space-y-4">
+                    <h4 class="font-mono font-bold text-white text-base">${group.category}</h4>
+                    <div class="space-y-3">
+                        ${group.items.map(skill => `
+                            <div>
+                                <div class="flex justify-between text-xs font-mono mb-1">
+                                    <span class="text-slate-300">${skill.name}</span>
+                                    <span class="text-sky-400">${skill.level}%</span>
+                                </div>
+                                <div class="w-full bg-slate-950 h-2 rounded-full overflow-hidden border border-slate-800">
+                                    <div class="bg-gradient-to-r from-sky-500 to-indigo-500 h-full rounded-full" style="width: ${skill.level}%"></div>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderProjectFilters() {
+            const container = document.getElementById('projectFilters');
+            const categories = ['All', ...new Set(portfolioData.projects.map(p => p.category || 'General'))];
+            container.innerHTML = categories.map(cat => `
+                <button onclick="setFilter('${cat}')" class="px-3.5 py-1.5 rounded-xl text-xs font-mono font-semibold transition-all ${activeFilter === cat ? 'bg-sky-500 text-slate-950' : 'bg-slate-900 text-slate-400 hover:text-white border border-slate-800'}">
+                    ${cat}
+                </button>
+            `).join('');
+        }
+
+        function setFilter(cat) {
+            activeFilter = cat;
+            renderProjectFilters();
+            renderProjects();
+        }
+
+        function renderProjects() {
+            const container = document.getElementById('projectsGrid');
+            const filtered = activeFilter === 'All' 
+                ? portfolioData.projects 
+                : portfolioData.projects.filter(p => (p.category || 'General') === activeFilter);
+
+            container.innerHTML = filtered.map((p, idx) => `
+                <div class="bg-slate-900/80 rounded-2xl overflow-hidden border border-slate-800 hover:border-sky-500/50 transition-all flex flex-col group">
+                    <div class="relative h-48 bg-slate-950 overflow-hidden">
+                        <img src="${p.image}" alt="${p.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <button onclick="removeProject(${idx})" class="absolute top-3 right-3 w-8 h-8 rounded-full bg-slate-950/80 text-slate-400 hover:text-rose-500 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                            <i class="fa-solid fa-trash text-xs"></i>
+                        </button>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+                        <div>
+                            <span class="text-[10px] font-mono text-sky-400 uppercase tracking-wider">${p.category || 'Architecture'}</span>
+                            <h4 class="text-base font-extrabold text-white mt-1">${p.title}</h4>
+                            <p class="text-xs text-slate-400 leading-relaxed mt-2">${p.description}</p>
+                        </div>
+                        <div class="space-y-3 pt-2">
+                            <div class="text-[11px] font-mono text-emerald-400">
+                                <i class="fa-solid fa-bolt mr-1"></i> ${p.impact}
+                            </div>
+                            <div class="flex flex-wrap gap-1.5">
+                                ${p.tags.map(t => `<span class="px-2 py-0.5 rounded bg-slate-950 text-slate-300 text-[10px] font-mono border border-slate-800">${t}</span>`).join('')}
+                            </div>
+                            <button onclick="openProjectModal(${idx})" class="text-xs font-mono font-bold text-sky-400 hover:underline inline-flex items-center gap-1 pt-2">
+                                Inspect Blueprint <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function syncDrawerInputs() {
+            document.getElementById('editName').value = portfolioData.name || '';
+            document.getElementById('editDegree').value = portfolioData.degree || '';
+            document.getElementById('editTagline').value = portfolioData.tagline || '';
+            document.getElementById('editBio').value = portfolioData.bio || '';
+            document.getElementById('editAvatar').value = portfolioData.avatar || '';
+            document.getElementById('editEmail').value = portfolioData.email || '';
+            document.getElementById('editLocation').value = portfolioData.location || '';
+        }
+
+        function setPresetTheme(theme, triggerSave = true) {
+            document.body.classList.remove('theme-aws', 'theme-azure', 'theme-k8s', 'theme-terminal');
+            if (theme !== 'default') {
+                document.body.classList.add(`theme-${theme}`);
+            }
+            portfolioData.theme = theme;
+            if (triggerSave) saveData();
+        }
+
+        function updateField(key, val) {
+            portfolioData[key] = val;
+            saveData();
+        }
+
+        function addNewCert() {
+            const title = prompt("Certification Title:", "AWS Certified DevOps Engineer");
+            if (!title) return;
+            portfolioData.certs.push({
+                title: title,
+                issuer: prompt("Issuer (e.g. AWS, CNCF):", "AWS") || "AWS",
+                code: "CERT-" + Math.floor(Math.random() * 9000 + 1000),
+                badgeIcon: "fa-brands fa-aws text-orange-400",
+                verifyUrl: "https://aws.amazon.com",
+                date: "2026"
+            });
+            saveData();
+            showToast("New Certification Added!");
+        }
+
+        function removeCert(idx) {
+            portfolioData.certs.splice(idx, 1);
+            saveData();
+        }
+
+        function addNewProject() {
+            const title = prompt("Project Title:", "Multi-Cloud Terraform Stack");
+            if (!title) return;
+            portfolioData.projects.push({
+                id: Date.now(),
+                title: title,
+                category: prompt("Category (e.g. AWS, Kubernetes, Azure):", "AWS") || "AWS",
+                description: "Automated cloud infrastructure deployment using Terraform and GitHub Actions.",
+                tags: ["AWS", "Terraform", "CI/CD"],
+                impact: "Reduced deployment time from 2 hours to 10 minutes",
+                image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&q=80&w=600",
+                github: "https://github.com",
+                demo: "https://example.com"
+            });
+            saveData();
+            showToast("New Project Added!");
+        }
+
+        function removeProject(idx) {
+            portfolioData.projects.splice(idx, 1);
+            saveData();
+        }
+
+        function openProjectModal(idx) {
+            const p = portfolioData.projects[idx];
+            document.getElementById('modalImg').src = p.image;
+            document.getElementById('modalTitle').textContent = p.title;
+            document.getElementById('modalDesc').textContent = p.description;
+            document.getElementById('modalImpactText').textContent = "Impact: " + p.impact;
+            document.getElementById('modalDemoLink').href = p.demo || '#';
+            document.getElementById('modalGithubLink').href = p.github || '#';
+            document.getElementById('modalTags').innerHTML = p.tags.map(t => `<span class="px-2 py-1 rounded bg-slate-950 text-sky-400 text-[10px] font-mono border border-slate-800">${t}</span>`).join('');
+            document.getElementById('projectModal').classList.remove('hidden');
+        }
+
+        function closeProjectModal() {
+            document.getElementById('projectModal').classList.add('hidden');
+        }
+
+        function handleTerminalSubmit(e) {
+            e.preventDefault();
+            const input = document.getElementById('terminalInput');
+            const cmd = input.value.trim().toLowerCase();
+            const body = document.getElementById('terminalBody');
+
+            if (!cmd) return;
+
+            body.innerHTML += `<div><span class="text-emerald-400">alex@cloud-console:~$</span> ${cmd}</div>`;
+
+            if (cmd === 'help') {
+                body.innerHTML += `<div class="text-slate-400 pl-4">Available commands: <span class="text-sky-400">certs</span>, <span class="text-sky-400">skills</span>, <span class="text-sky-400">projects</span>, <span class="text-sky-400">status</span>, <span class="text-sky-400">deploy-resume</span>, <span class="text-sky-400">contact</span>, <span class="text-sky-400">clear</span></div>`;
+            } else if (cmd === 'certs') {
+                body.innerHTML += `<div class="text-slate-300 pl-4">${portfolioData.certs.map(c => `• ${c.title} (${c.issuer})`).join('<br>')}</div>`;
+            } else if (cmd === 'skills') {
+                body.innerHTML += `<div class="text-slate-300 pl-4">${portfolioData.skills.map(s => `[${s.category}]: ${s.items.map(i => i.name).join(', ')}`).join('<br>')}</div>`;
+            } else if (cmd === 'projects') {
+                body.innerHTML += `<div class="text-slate-300 pl-4">${portfolioData.projects.map(p => `• ${p.title} [${p.category}]`).join('<br>')}</div>`;
+            } else if (cmd === 'status') {
+                body.innerHTML += `<div class="text-emerald-400 pl-4">STATUS: ${portfolioData.status} | UPTIME: 99.99% | CLUSTER: HEALTHY</div>`;
+            } else if (cmd === 'deploy-resume') {
+                body.innerHTML += `<div class="text-sky-400 pl-4">Opening resume download link...</div>`;
+                window.open(portfolioData.resumeUrl || '#', '_blank');
+            } else if (cmd === 'contact') {
+                body.innerHTML += `<div class="text-slate-300 pl-4">Email: ${portfolioData.email} | Region: ${portfolioData.location}</div>`;
+            } else if (cmd === 'clear') {
+                body.innerHTML = '';
+            } else {
+                body.innerHTML += `<div class="text-rose-400 pl-4">Command not found: '${cmd}'. Type 'help' for options.</div>`;
+            }
+
+            input.value = '';
+            body.scrollTop = body.scrollHeight;
+        }
+
+        function toggleEditorDrawer() {
+            document.getElementById('editorDrawer').classList.toggle('translate-x-full');
+        }
+
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.tab-btn').forEach(el => {
+                el.classList.remove('text-sky-400', 'border-sky-400');
+                el.classList.add('text-slate-400', 'border-transparent');
+            });
+
+            document.getElementById(`tab-${tabId}`).classList.remove('hidden');
+            const activeBtn = document.getElementById(`tabBtn-${tabId}`);
+            activeBtn.classList.add('text-sky-400', 'border-sky-400');
+            activeBtn.classList.remove('text-slate-400', 'border-transparent');
+        }
+
+        function exportJSON() {
+            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(portfolioData, null, 2));
+            const a = document.createElement('a');
+            a.href = dataStr;
+            a.download = `cloud-portfolio-${portfolioData.name.toLowerCase().replace(/\s+/g, '-')}.json`;
+            a.click();
+            showToast("Configuration Downloaded!");
+        }
+
+        function importJSON(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = (event) => {
+                try {
+                    portfolioData = JSON.parse(event.target.result);
+                    saveData();
+                    showToast("Profile Imported Successfully!");
+                } catch (err) {
+                    alert("Invalid JSON format.");
+                }
+            };
+            reader.readAsText(file);
+        }
+
+        function copyDataToClipboard() {
+            const text = JSON.stringify(portfolioData, null, 2);
+            const ta = document.createElement('textarea');
+            ta.value = text;
+            document.body.appendChild(ta);
+            ta.select();
+            document.execCommand('copy');
+            document.body.removeChild(ta);
+            showToast("JSON Copied to Clipboard!");
+        }
+
+        function resetDataToDefault() {
+            if (confirm("Reset cloud portfolio to demo defaults?")) {
+                portfolioData = JSON.parse(JSON.stringify(defaultPortfolioData));
+                saveData();
+                showToast("Portfolio Reset!");
+            }
+        }
+
+        function handleContactSubmit(e) {
+            e.preventDefault();
+            showToast("Message Transmitted!");
+            e.target.reset();
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toastMessage').textContent = msg;
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0');
+                toast.classList.remove('translate-y-0', 'opacity-100');
+            }, 3000);
+        }
+    </script>
+</body>
+</html>

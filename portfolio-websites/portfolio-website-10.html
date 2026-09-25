@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Portfolio & Live Customizer</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        serif: ['"Playfair Display"', 'serif'],
+                        mono: ['"Fira Code"', 'monospace'],
+                    },
+                    colors: {
+                        theme: {
+                            50: 'var(--color-50, #fdf2f8)',
+                            100: 'var(--color-100, #fce7f3)',
+                            200: 'var(--color-200, #fbcfe8)',
+                            300: 'var(--color-300, #f9a8d4)',
+                            400: 'var(--color-400, #f472b6)',
+                            500: 'var(--color-500, #ec4899)',
+                            600: 'var(--color-600, #db2777)',
+                            700: 'var(--color-700, #be185d)',
+                            800: 'var(--color-800, #9d174d)',
+                            900: 'var(--color-900, #831843)',
+                        }
+                    },
+                    animation: {
+                        'gradient-x': 'gradient-x 12s ease infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-glow': 'pulse-glow 4s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        'gradient-x': {
+                            '0%, 100%': { 'background-size': '200% 200%', 'background-position': 'left center' },
+                            '50%': { 'background-size': '200% 200%', 'background-position': 'right center' },
+                        },
+                        'float': {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        },
+                        'pulse-glow': {
+                            '0%, 100%': { opacity: '0.4', transform: 'scale(1)' },
+                            '50%': { opacity: '0.8', transform: 'scale(1.08)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Theme Presets Variables */
+        :root {
+            /* Default: Rose Gold & Velvet */
+            --color-50: #fdf2f8;
+            --color-100: #fce7f3;
+            --color-200: #fbcfe8;
+            --color-300: #f9a8d4;
+            --color-400: #f472b6;
+            --color-500: #ec4899;
+            --color-600: #db2777;
+            --color-700: #be185d;
+            --color-800: #9d174d;
+            --color-900: #831843;
+            --gradient-hero: linear-gradient(135deg, #fdf2f8 0%, #fbcfe8 50%, #f472b6 100%);
+            --accent-glow: rgba(236, 72, 153, 0.25);
+        }
+
+        .theme-lavender {
+            --color-50: #f3e8ff;
+            --color-100: #e9d5ff;
+            --color-200: #d8b4fe;
+            --color-300: #c084fc;
+            --color-400: #a855f7;
+            --color-500: #9333ea;
+            --color-600: #7e22ce;
+            --color-700: #6b21a8;
+            --color-800: #581c87;
+            --color-900: #3b0764;
+            --gradient-hero: linear-gradient(135deg, #faf5ff 0%, #e9d5ff 50%, #c084fc 100%);
+            --accent-glow: rgba(147, 51, 234, 0.25);
+        }
+
+        .theme-sage {
+            --color-50: #f0fdf4;
+            --color-100: #dcfce7;
+            --color-200: #bbf7d0;
+            --color-300: #86efac;
+            --color-400: #4ade80;
+            --color-500: #10b981;
+            --color-600: #059669;
+            --color-700: #047857;
+            --color-800: #065f46;
+            --color-900: #064e3b;
+            --gradient-hero: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 50%, #86efac 100%);
+            --accent-glow: rgba(16, 185, 129, 0.25);
+        }
+
+        .theme-coral {
+            --color-50: #fff1f2;
+            --color-100: #ffe4e6;
+            --color-200: #fecdd3;
+            --color-300: #fda4af;
+            --color-400: #fb7185;
+            --color-500: #f43f5e;
+            --color-600: #e11d48;
+            --color-700: #be123c;
+            --color-800: #9f1239;
+            --color-900: #881337;
+            --gradient-hero: linear-gradient(135deg, #fff1f2 0%, #fecdd3 50%, #fb7185 100%);
+            --accent-glow: rgba(244, 63, 94, 0.25);
+        }
+
+        .theme-minimal {
+            --color-50: #f8fafc;
+            --color-100: #f1f5f9;
+            --color-200: #e2e8f0;
+            --color-300: #cbd5e1;
+            --color-400: #94a3b8;
+            --color-500: #64748b;
+            --color-600: #475569;
+            --color-700: #334155;
+            --color-800: #1e293b;
+            --color-900: #0f172a;
+            --gradient-hero: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 50%, #94a3b8 100%);
+            --accent-glow: rgba(100, 116, 139, 0.25);
+        }
+
+        /* Glassmorphism Styles */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+        }
+        .dark .glass-card {
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+        }
+        .dark .glass-nav {
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        /* Ambient Glow Effect */
+        .ambient-glow {
+            box-shadow: 0 20px 50px var(--accent-glow);
+        }
+
+        /* Smooth Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(203, 213, 225, 0.8);
+            border-radius: 9999px;
+        }
+        .dark ::-webkit-scrollbar-thumb {
+            background: rgba(51, 65, 85, 0.8);
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--color-400);
+        }
+    </style>
+</head>
+<body class="bg-rose-50/30 text-slate-800 dark:bg-slate-950 dark:text-slate-100 font-sans antialiased selection:bg-theme-400 selection:text-white transition-colors duration-300 min-h-screen flex flex-col">
+
+    <!-- Navigation Bar -->
+    <nav class="fixed top-0 left-0 right-0 z-40 glass-nav transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="#hero" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-theme-500 to-theme-300 text-white flex items-center justify-center font-serif font-bold text-lg shadow-md group-hover:scale-105 transition-transform" id="navLogo">
+                    S
+                </div>
+                <div class="flex flex-col">
+                    <span id="navNameDisplay" class="font-serif font-bold text-lg text-slate-900 dark:text-white tracking-tight group-hover:text-theme-600 transition-colors">Sophia Lin</span>
+                    <span id="navPronounsDisplay" class="text-[10px] font-mono text-slate-500 dark:text-slate-400 -mt-1">(she/her)</span>
+                </div>
+            </a>
+
+            <!-- Navigation Links -->
+            <div class="hidden lg:flex items-center gap-8 text-sm font-medium text-slate-600 dark:text-slate-300">
+                <a href="#about" class="hover:text-theme-600 dark:hover:text-theme-400 transition-colors">About</a>
+                <a href="#skills" class="hover:text-theme-600 dark:hover:text-theme-400 transition-colors">Skills</a>
+                <a href="#projects" class="hover:text-theme-600 dark:hover:text-theme-400 transition-colors">Projects</a>
+                <a href="#experience" class="hover:text-theme-600 dark:hover:text-theme-400 transition-colors">Experience</a>
+                <a href="#achievements" class="hover:text-theme-600 dark:hover:text-theme-400 transition-colors">Honors</a>
+                <a href="#contact" class="hover:text-theme-600 dark:hover:text-theme-400 transition-colors">Contact</a>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flex items-center gap-3">
+                <!-- Dark Mode Toggle -->
+                <button id="themeToggle" aria-label="Toggle Dark/Light Mode" class="p-2.5 rounded-2xl text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white hover:bg-white/60 dark:hover:bg-slate-800 transition-all focus:outline-none">
+                    <i class="fa-solid fa-moon text-lg dark:hidden"></i>
+                    <i class="fa-solid fa-sun text-lg hidden dark:block text-amber-300"></i>
+                </button>
+
+                <!-- Edit Mode Drawer Trigger Button -->
+                <button onclick="toggleEditDrawer()" class="flex items-center gap-2 px-4 py-2 rounded-2xl text-xs font-semibold bg-gradient-to-r from-theme-500 to-theme-600 text-white shadow-lg shadow-theme-500/25 hover:shadow-theme-500/40 hover:scale-[1.02] active:scale-[0.98] transition-all">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    <span class="hidden sm:inline">Customize Portfolio</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="relative pt-32 pb-20 md:pt-44 md:pb-32 overflow-hidden">
+        <!-- Floating Animated Background Elements -->
+        <div class="absolute top-20 left-1/4 w-96 h-96 bg-theme-300/30 dark:bg-theme-900/20 rounded-full blur-3xl animate-pulse-glow pointer-events-none"></div>
+        <div class="absolute bottom-10 right-1/4 w-80 h-80 bg-rose-200/40 dark:bg-purple-900/20 rounded-full blur-3xl animate-float pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="flex flex-col md:flex-row items-center gap-12 lg:gap-16 text-center md:text-left">
+                
+                <!-- Avatar with Glowing Ring -->
+                <div class="relative group shrink-0">
+                    <div class="absolute -inset-1.5 bg-gradient-to-r from-theme-400 via-rose-300 to-theme-600 rounded-full blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-gradient-x"></div>
+                    <img id="displayAvatar" src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=600" alt="Student Profile Avatar" class="relative w-48 h-48 sm:w-56 sm:h-56 rounded-full object-cover border-4 border-white dark:border-slate-900 shadow-2xl">
+                    <div class="absolute bottom-2 right-2 px-3 py-1 bg-white dark:bg-slate-900 rounded-full shadow-lg border border-slate-100 dark:border-slate-800 flex items-center gap-1.5 text-xs font-semibold text-slate-700 dark:text-slate-200">
+                        <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
+                        <span id="displayStatus">Available for Roles</span>
+                    </div>
+                </div>
+
+                <!-- Bio Content -->
+                <div class="flex-1 space-y-5">
+                    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold bg-theme-50 dark:bg-theme-950/80 text-theme-700 dark:text-theme-300 border border-theme-200 dark:border-theme-800 shadow-sm">
+                        <i class="fa-solid fa-sparkles text-theme-500"></i>
+                        <span id="displayTitle">Data Science & AI Senior @ Tech University</span>
+                    </div>
+
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold text-slate-900 dark:text-white tracking-tight">
+                        Hello, I'm <span id="displayName" class="bg-gradient-to-r from-theme-600 via-theme-500 to-rose-400 bg-clip-text text-transparent">Sophia Lin</span>
+                    </h1>
+
+                    <p id="displayTagline" class="text-lg sm:text-xl font-medium text-slate-600 dark:text-slate-300 max-w-2xl leading-relaxed">
+                        Building intelligent systems, empowering women in STEM, and designing seamless user-centric technology.
+                    </p>
+
+                    <p id="displayBio" class="text-sm sm:text-base text-slate-500 dark:text-slate-400 max-w-2xl leading-relaxed">
+                        Passionate student researcher focusing on ethical artificial intelligence, computer vision, and community leadership. Former Software Engineering Intern & Girls Who Code mentor.
+                    </p>
+
+                    <!-- CTA Buttons & Social Icons -->
+                    <div class="pt-4 flex flex-wrap items-center justify-center md:justify-start gap-4">
+                        <a href="#contact" class="px-7 py-3.5 rounded-2xl bg-gradient-to-r from-theme-500 to-theme-600 hover:from-theme-600 hover:to-theme-700 text-white font-semibold text-sm shadow-xl shadow-theme-500/25 transition-all hover:scale-[1.02] active:scale-[0.98]">
+                            Let's Connect <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
+                        </a>
+                        <a id="displayResumeBtn" href="#" target="_blank" class="px-7 py-3.5 rounded-2xl bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-800 font-semibold text-sm shadow-sm transition-all hover:scale-[1.02] active:scale-[0.98] inline-flex items-center gap-2">
+                            <i class="fa-solid fa-file-arrow-down text-theme-500"></i> View Resume
+                        </a>
+
+                        <div class="flex items-center gap-2 pl-2 border-l border-slate-200 dark:border-slate-800" id="socialLinksContainer">
+                            <!-- Social Icons dynamically rendered -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About & Key Highlights Section -->
+    <section id="about" class="py-16 bg-white/50 dark:bg-slate-900/40 border-y border-slate-200/60 dark:border-slate-800/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                
+                <div class="glass-card p-6 rounded-3xl text-center shadow-sm hover:shadow-md transition-all">
+                    <div class="w-12 h-12 mx-auto rounded-2xl bg-theme-100 dark:bg-theme-950 text-theme-600 dark:text-theme-300 flex items-center justify-center text-xl mb-3">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                    </div>
+                    <h3 class="text-3xl font-bold font-serif text-slate-900 dark:text-white" id="statGpa">3.95</h3>
+                    <p class="text-xs font-semibold text-slate-500 dark:text-slate-400 mt-1 uppercase tracking-wider font-mono">Cumulative GPA</p>
+                </div>
+
+                <div class="glass-card p-6 rounded-3xl text-center shadow-sm hover:shadow-md transition-all">
+                    <div class="w-12 h-12 mx-auto rounded-2xl bg-theme-100 dark:bg-theme-950 text-theme-600 dark:text-theme-300 flex items-center justify-center text-xl mb-3">
+                        <i class="fa-solid fa-code"></i>
+                    </div>
+                    <h3 class="text-3xl font-bold font-serif text-slate-900 dark:text-white" id="statProjects">12+</h3>
+                    <p class="text-xs font-semibold text-slate-500 dark:text-slate-400 mt-1 uppercase tracking-wider font-mono">Projects Built</p>
+                </div>
+
+                <div class="glass-card p-6 rounded-3xl text-center shadow-sm hover:shadow-md transition-all">
+                    <div class="w-12 h-12 mx-auto rounded-2xl bg-theme-100 dark:bg-theme-950 text-theme-600 dark:text-theme-300 flex items-center justify-center text-xl mb-3">
+                        <i class="fa-solid fa-trophy"></i>
+                    </div>
+                    <h3 class="text-3xl font-bold font-serif text-slate-900 dark:text-white" id="statAwards">5</h3>
+                    <p class="text-xs font-semibold text-slate-500 dark:text-slate-400 mt-1 uppercase tracking-wider font-mono">Awards & Honors</p>
+                </div>
+
+                <div class="glass-card p-6 rounded-3xl text-center shadow-sm hover:shadow-md transition-all">
+                    <div class="w-12 h-12 mx-auto rounded-2xl bg-theme-100 dark:bg-theme-950 text-theme-600 dark:text-theme-300 flex items-center justify-center text-xl mb-3">
+                        <i class="fa-solid fa-users"></i>
+                    </div>
+                    <h3 class="text-3xl font-bold font-serif text-slate-900 dark:text-white" id="statLeadership">200+</h3>
+                    <p class="text-xs font-semibold text-slate-500 dark:text-slate-400 mt-1 uppercase tracking-wider font-mono">Students Mented</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16 space-y-2">
+                <span class="text-xs font-mono font-bold uppercase tracking-widest text-theme-600 dark:text-theme-400">Toolkit & Expertise</span>
+                <h2 class="text-3xl sm:text-4xl font-serif font-bold text-slate-900 dark:text-white">Skills & Competencies</h2>
+            </div>
+
+            <!-- Skills Categories Grid -->
+            <div id="skillsContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Dynamically rendered skill cards -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 bg-white/50 dark:bg-slate-900/40 border-y border-slate-200/60 dark:border-slate-800/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-4">
+                <div>
+                    <span class="text-xs font-mono font-bold uppercase tracking-widest text-theme-600 dark:text-theme-400">Portfolio Highlights</span>
+                    <h2 class="text-3xl sm:text-4xl font-serif font-bold text-slate-900 dark:text-white mt-1">Featured Projects</h2>
+                </div>
+                <p class="text-sm text-slate-500 dark:text-slate-400 max-w-md">
+                    Explore my academic software development, machine learning models, and human-computer interaction designs.
+                </p>
+            </div>
+
+            <!-- Projects Grid -->
+            <div id="projectsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Dynamically rendered project cards -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience & Education Section -->
+    <section id="experience" class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16 space-y-2">
+                <span class="text-xs font-mono font-bold uppercase tracking-widest text-theme-600 dark:text-theme-400">Journey & Academic Record</span>
+                <h2 class="text-3xl sm:text-4xl font-serif font-bold text-slate-900 dark:text-white">Education & Leadership</h2>
+            </div>
+
+            <div class="max-w-4xl mx-auto relative border-l-2 border-theme-200 dark:border-theme-900 ml-4 sm:ml-auto space-y-12 pl-6 sm:pl-10" id="experienceTimeline">
+                <!-- Dynamically rendered timeline items -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements & Honors Section -->
+    <section id="achievements" class="py-20 bg-white/50 dark:bg-slate-900/40 border-y border-slate-200/60 dark:border-slate-800/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16 space-y-2">
+                <span class="text-xs font-mono font-bold uppercase tracking-widest text-theme-600 dark:text-theme-400">Recognition</span>
+                <h2 class="text-3xl sm:text-4xl font-serif font-bold text-slate-900 dark:text-white">Honors & Certifications</h2>
+            </div>
+
+            <div id="achievementsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Dynamically rendered achievements -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-4xl mx-auto rounded-3xl glass-card p-8 sm:p-12 shadow-2xl relative overflow-hidden">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                    
+                    <div class="space-y-6">
+                        <div>
+                            <span class="text-xs font-mono font-bold uppercase tracking-widest text-theme-600 dark:text-theme-400">Get in Touch</span>
+                            <h2 class="text-3xl font-serif font-bold text-slate-900 dark:text-white mt-1">Let's Collaborate</h2>
+                        </div>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+                            Have a question, internship offer, or want to collaborate on research or open-source? Drop me a message!
+                        </p>
+
+                        <div class="space-y-4 pt-2">
+                            <div class="flex items-center gap-4 text-slate-700 dark:text-slate-300">
+                                <div class="w-11 h-11 rounded-2xl bg-theme-100 dark:bg-theme-950 text-theme-600 dark:text-theme-300 flex items-center justify-center shrink-0 shadow-sm">
+                                    <i class="fa-solid fa-envelope text-lg"></i>
+                                </div>
+                                <div>
+                                    <p class="text-[11px] font-mono text-slate-400 uppercase">Email Address</p>
+                                    <a id="displayContactEmail" href="mailto:sophia.lin@stanford.edu" class="hover:underline font-semibold text-sm">sophia.lin@stanford.edu</a>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center gap-4 text-slate-700 dark:text-slate-300">
+                                <div class="w-11 h-11 rounded-2xl bg-theme-100 dark:bg-theme-950 text-theme-600 dark:text-theme-300 flex items-center justify-center shrink-0 shadow-sm">
+                                    <i class="fa-solid fa-location-dot text-lg"></i>
+                                </div>
+                                <div>
+                                    <p class="text-[11px] font-mono text-slate-400 uppercase">Location</p>
+                                    <p id="displayContactLocation" class="font-semibold text-sm">San Francisco, California</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Form -->
+                    <form onsubmit="handleFormSubmit(event)" class="space-y-4">
+                        <div>
+                            <label class="block text-xs font-mono text-slate-500 dark:text-slate-400 mb-1">Your Full Name</label>
+                            <input type="text" required placeholder="e.g. Maya Lin" class="w-full px-4 py-3 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-theme-400 shadow-sm">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-mono text-slate-500 dark:text-slate-400 mb-1">Your Email</label>
+                            <input type="email" required placeholder="maya@example.com" class="w-full px-4 py-3 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-theme-400 shadow-sm">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-mono text-slate-500 dark:text-slate-400 mb-1">Message</label>
+                            <textarea rows="4" required placeholder="Hi Sophia, I would love to connect regarding..." class="w-full px-4 py-3 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-theme-400 shadow-sm resize-none"></textarea>
+                        </div>
+                        <button type="submit" class="w-full py-3.5 rounded-2xl bg-gradient-to-r from-theme-500 to-theme-600 hover:from-theme-600 hover:to-theme-700 text-white font-semibold text-sm shadow-xl shadow-theme-500/20 transition-all hover:scale-[1.01] active:scale-[0.99]">
+                            Send Message <i class="fa-solid fa-paper-plane ml-2 text-xs"></i>
+                        </button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="mt-auto py-10 border-t border-slate-200/60 dark:border-slate-800/60 text-center text-xs text-slate-500 dark:text-slate-400">
+        <p>© <span id="footerYear">2026</span> <span id="footerName">Sophia Lin</span>. Handcrafted with Student Portfolio Template.</p>
+    </footer>
+
+    <!-- Project Detail Modal Overlay -->
+    <div id="projectModal" class="fixed inset-0 z-50 bg-slate-950/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="glass-card w-full max-w-2xl rounded-3xl overflow-hidden shadow-2xl border border-slate-200 dark:border-slate-800 max-h-[90vh] flex flex-col animate-float">
+            <div class="relative h-64 bg-slate-100 dark:bg-slate-800">
+                <img id="modalImg" src="" alt="Project Preview" class="w-full h-full object-cover">
+                <button onclick="closeProjectModal()" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-slate-900/70 text-white flex items-center justify-center hover:bg-slate-900 transition-colors">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div class="p-6 sm:p-8 overflow-y-auto space-y-4">
+                <div id="modalTags" class="flex flex-wrap gap-2"></div>
+                <h3 id="modalTitle" class="text-2xl font-serif font-bold text-slate-900 dark:text-white"></h3>
+                <p id="modalDesc" class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed"></p>
+                <div class="pt-4 flex items-center gap-4">
+                    <a id="modalDemoLink" href="#" target="_blank" class="px-5 py-2.5 rounded-xl bg-theme-600 text-white text-xs font-semibold shadow-md flex items-center gap-2 hover:bg-theme-700">
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo
+                    </a>
+                    <a id="modalGithubLink" href="#" target="_blank" class="px-5 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 text-xs font-semibold flex items-center gap-2 hover:bg-slate-200 dark:hover:bg-slate-700">
+                        <i class="fa-brands fa-github"></i> Repository
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- LIVE CUSTOMIZER EDIT DRAWER -->
+    <div id="editorDrawer" class="fixed inset-y-0 right-0 w-full max-w-lg bg-white dark:bg-slate-900 shadow-2xl z-50 transform translate-x-full transition-transform duration-300 ease-in-out border-l border-slate-200 dark:border-slate-800 flex flex-col">
+        
+        <!-- Drawer Header -->
+        <div class="p-5 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between bg-slate-50/80 dark:bg-slate-950/80">
+            <div class="flex items-center gap-2.5">
+                <i class="fa-solid fa-wand-magic-sparkles text-theme-500 text-lg"></i>
+                <h3 class="font-serif font-bold text-slate-900 dark:text-white text-lg">Visual Live Customizer</h3>
+            </div>
+            <button onclick="toggleEditDrawer()" class="p-2 rounded-xl text-slate-400 hover:text-slate-600 dark:hover:text-white hover:bg-slate-200 dark:hover:bg-slate-800">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+        </div>
+
+        <!-- Drawer Body Forms -->
+        <div class="flex-1 overflow-y-auto p-6 space-y-8 text-xs">
+            
+            <!-- Quick Actions & Import/Export -->
+            <div class="p-4 rounded-2xl bg-theme-50/60 dark:bg-theme-950/40 border border-theme-100 dark:border-theme-900 space-y-3">
+                <span class="font-mono font-bold uppercase text-theme-700 dark:text-theme-300 block">Configuration & Backup</span>
+                <div class="flex gap-2">
+                    <button onclick="exportJSON()" class="flex-1 py-2 px-3 rounded-xl bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 font-semibold shadow-sm flex items-center justify-center gap-1.5 hover:bg-slate-50">
+                        <i class="fa-solid fa-download text-theme-500"></i> Export JSON
+                    </button>
+                    <button onclick="document.getElementById('importFileInput').click()" class="flex-1 py-2 px-3 rounded-xl bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 font-semibold shadow-sm flex items-center justify-center gap-1.5 hover:bg-slate-50">
+                        <i class="fa-solid fa-upload text-theme-500"></i> Import JSON
+                    </button>
+                    <input type="file" id="importFileInput" accept=".json" class="hidden" onchange="importJSON(event)">
+                </div>
+            </div>
+
+            <!-- Aesthetic Palette Switcher -->
+            <div class="space-y-3">
+                <h4 class="font-mono font-bold uppercase text-theme-600 dark:text-theme-400">Aesthetic Theme Palette</h4>
+                <div class="grid grid-cols-2 gap-2.5">
+                    <button onclick="setThemePalette('rose')" class="p-3 rounded-2xl border text-left flex items-center gap-2.5 bg-rose-50 text-rose-900 border-rose-200 hover:scale-[1.02] transition-transform">
+                        <span class="w-4 h-4 rounded-full bg-pink-500 inline-block"></span>
+                        <span class="font-semibold">Rose Gold</span>
+                    </button>
+                    <button onclick="setThemePalette('lavender')" class="p-3 rounded-2xl border text-left flex items-center gap-2.5 bg-purple-50 text-purple-900 border-purple-200 hover:scale-[1.02] transition-transform">
+                        <span class="w-4 h-4 rounded-full bg-purple-500 inline-block"></span>
+                        <span class="font-semibold">Lavender Mist</span>
+                    </button>
+                    <button onclick="setThemePalette('sage')" class="p-3 rounded-2xl border text-left flex items-center gap-2.5 bg-emerald-50 text-emerald-900 border-emerald-200 hover:scale-[1.02] transition-transform">
+                        <span class="w-4 h-4 rounded-full bg-emerald-500 inline-block"></span>
+                        <span class="font-semibold">Sage Eucalyptus</span>
+                    </button>
+                    <button onclick="setThemePalette('coral')" class="p-3 rounded-2xl border text-left flex items-center gap-2.5 bg-rose-100 text-rose-950 border-rose-300 hover:scale-[1.02] transition-transform">
+                        <span class="w-4 h-4 rounded-full bg-rose-500 inline-block"></span>
+                        <span class="font-semibold">Sunset Coral</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Personal Profile Inputs -->
+            <div class="space-y-4 pt-4 border-t border-slate-200 dark:border-slate-800">
+                <h4 class="font-mono font-bold uppercase text-theme-600 dark:text-theme-400">Personal Information</h4>
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-slate-500 mb-1">Full Name</label>
+                        <input type="text" id="editName" oninput="updateField('name', this.value)" class="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+                    </div>
+                    <div>
+                        <label class="block text-slate-500 mb-1">Pronouns</label>
+                        <input type="text" id="editPronouns" oninput="updateField('pronouns', this.value)" class="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-slate-500 mb-1">Title / Major Tagline</label>
+                    <input type="text" id="editTitle" oninput="updateField('title', this.value)" class="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+                </div>
+                <div>
+                    <label class="block text-slate-500 mb-1">Hero Bio Summary</label>
+                    <textarea id="editBio" rows="3" oninput="updateField('bio', this.value)" class="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 resize-none"></textarea>
+                </div>
+                <div>
+                    <label class="block text-slate-500 mb-1">Avatar Image URL</label>
+                    <input type="text" id="editAvatar" oninput="updateField('avatar', this.value)" class="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 font-mono text-[11px]">
+                </div>
+            </div>
+
+            <!-- Stats Inputs -->
+            <div class="space-y-4 pt-4 border-t border-slate-200 dark:border-slate-800">
+                <h4 class="font-mono font-bold uppercase text-theme-600 dark:text-theme-400">Key Statistics</h4>
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-slate-500 mb-1">GPA</label>
+                        <input type="text" id="editGpa" oninput="updateStat('gpa', this.value)" class="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+                    </div>
+                    <div>
+                        <label class="block text-slate-500 mb-1">Projects Built</label>
+                        <input type="text" id="editProjectsBuilt" oninput="updateStat('projects', this.value)" class="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+                    </div>
+                    <div>
+                        <label class="block text-slate-500 mb-1">Awards Won</label>
+                        <input type="text" id="editAwards" oninput="updateStat('awards', this.value)" class="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+                    </div>
+                    <div>
+                        <label class="block text-slate-500 mb-1">Mentees / Leadership</label>
+                        <input type="text" id="editLeadership" oninput="updateStat('leadership', this.value)" class="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dynamic Creator Buttons -->
+            <div class="space-y-3 pt-4 border-t border-slate-200 dark:border-slate-800">
+                <h4 class="font-mono font-bold uppercase text-theme-600 dark:text-theme-400">Manage Content Sections</h4>
+                <div class="grid grid-cols-2 gap-2">
+                    <button onclick="addNewProject()" class="py-2.5 px-3 rounded-xl bg-theme-600 text-white font-semibold flex items-center justify-center gap-1.5 hover:bg-theme-700 shadow-sm">
+                        <i class="fa-solid fa-plus"></i> Add Project
+                    </button>
+                    <button onclick="addNewExperience()" class="py-2.5 px-3 rounded-xl bg-theme-600 text-white font-semibold flex items-center justify-center gap-1.5 hover:bg-theme-700 shadow-sm">
+                        <i class="fa-solid fa-plus"></i> Add Experience
+                    </button>
+                    <button onclick="addNewAchievement()" class="py-2.5 px-3 rounded-xl bg-theme-600 text-white font-semibold flex items-center justify-center gap-1.5 hover:bg-theme-700 shadow-sm">
+                        <i class="fa-solid fa-plus"></i> Add Honor
+                    </button>
+                    <button onclick="resetDataToDefault()" class="py-2.5 px-3 rounded-xl bg-rose-100 text-rose-700 dark:bg-rose-950 dark:text-rose-300 font-semibold flex items-center justify-center gap-1.5 hover:bg-rose-200">
+                        <i class="fa-solid fa-rotate-left"></i> Reset Demo
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Drawer Footer -->
+        <div class="p-4 border-t border-slate-200 dark:border-slate-800 bg-slate-50/80 dark:bg-slate-950/80">
+            <button onclick="copyDataToClipboard()" class="w-full py-3 rounded-2xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-semibold text-xs shadow-lg flex items-center justify-center gap-2">
+                <i class="fa-regular fa-copy"></i> Copy Configuration JSON
+            </button>
+        </div>
+    </div>
+
+    <!-- Toast Banner -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none px-5 py-3.5 rounded-2xl bg-slate-900 text-white dark:bg-white dark:text-slate-900 shadow-2xl text-xs font-semibold flex items-center gap-2.5">
+        <i class="fa-solid fa-sparkles text-theme-400"></i>
+        <span id="toastMessage">Changes Saved Successfully!</span>
+    </div>
+
+    <script>
+        // Default Portfolio Data tailored for Women in STEM / Leadership
+        const defaultPortfolioData = {
+            theme: "rose",
+            name: "Sophia Lin",
+            pronouns: "she/her",
+            title: "Data Science & AI Senior @ Stanford University",
+            tagline: "Building intelligent systems, empowering women in STEM, and designing human-centered technology.",
+            bio: "Passionate student researcher focusing on ethical artificial intelligence, computer vision, and community leadership. Former Software Engineering Intern & Girls Who Code mentor.",
+            status: "Available for Roles",
+            avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=600",
+            resumeUrl: "#",
+            email: "sophia.lin@stanford.edu",
+            location: "San Francisco, California",
+            stats: {
+                gpa: "3.95",
+                projects: "12+",
+                awards: "5",
+                leadership: "200+"
+            },
+            socials: {
+                github: "https://github.com",
+                linkedin: "https://linkedin.com",
+                instagram: "https://instagram.com",
+                behance: "https://behance.net"
+            },
+            skills: [
+                { category: "Programming & Machine Learning", items: ["Python", "PyTorch", "TypeScript", "SQL", "Scikit-Learn"] },
+                { category: "Web & Product Design", items: ["React", "Next.js", "Tailwind CSS", "Figma (UI/UX)", "User Research"] },
+                { category: "Tools & Leadership", items: ["Git / GitHub", "Docker", "AWS", "Agile Leadership", "Public Speaking"] }
+            ],
+            experience: [
+                {
+                    title: "Software Engineering Intern",
+                    organization: "Meta AI Systems",
+                    period: "Jun 2025 - Aug 2025",
+                    description: "Developed machine learning pipelines for automated image classification, improving model inference speed by 18%."
+                },
+                {
+                    title: "President & Tech Director",
+                    organization: "Women in Computer Science (WiCS)",
+                    period: "Sep 2024 - Present",
+                    description: "Led a student organization of 250+ members, organized 10+ technical workshops, and partnered with tech companies."
+                }
+            ],
+            projects: [
+                {
+                    id: 1,
+                    title: "AuraHealth: AI Mental Wellness",
+                    description: "A empathetic AI-driven companion journal built with NLP to track mood trends and recommend mindfulness activities.",
+                    tags: ["Python", "React Native", "FastAPI", "OpenAI"],
+                    image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=600",
+                    github: "https://github.com",
+                    demo: "https://example.com"
+                },
+                {
+                    id: 2,
+                    title: "EcoSense Smart Grid",
+                    description: "An IoT dashboard analyzing real-time energy usage patterns in student dormitories using predictive analytics.",
+                    tags: ["TypeScript", "Next.js", "Tailwind CSS", "D3.js"],
+                    image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80&w=600",
+                    github: "https://github.com",
+                    demo: "https://example.com"
+                }
+            ],
+            achievements: [
+                { title: "National Gold Award Scholar", issuer: "Girls Who Code Summit", year: "2025" },
+                { title: "1st Place Winner", issuer: "Stanford AI Hacks", year: "2024" },
+                { title: "Dean's List High Honors", issuer: "Stanford University", year: "2023 - 2025" }
+            ]
+        };
+
+        let portfolioData = {};
+
+        // INITIALIZATION
+        window.addEventListener('DOMContentLoaded', () => {
+            loadStoredData();
+            initThemeMode();
+            renderAll();
+        });
+
+        function loadStoredData() {
+            const saved = localStorage.getItem('women_portfolio_data');
+            if (saved) {
+                try {
+                    portfolioData = JSON.parse(saved);
+                } catch (e) {
+                    portfolioData = { ...defaultPortfolioData };
+                }
+            } else {
+                portfolioData = { ...defaultPortfolioData };
+            }
+        }
+
+        function saveData() {
+            localStorage.setItem('women_portfolio_data', JSON.stringify(portfolioData));
+            renderAll();
+        }
+
+        function renderAll() {
+            setThemePalette(portfolioData.theme || 'rose', false);
+
+            document.getElementById('navNameDisplay').textContent = portfolioData.name;
+            document.getElementById('navPronounsDisplay').textContent = `(${portfolioData.pronouns || 'she/her'})`;
+            document.getElementById('navLogo').textContent = portfolioData.name.charAt(0) || 'S';
+
+            document.getElementById('displayName').textContent = portfolioData.name;
+            document.getElementById('displayPronouns') ? document.getElementById('displayPronouns').textContent = portfolioData.pronouns : null;
+            document.getElementById('displayTitle').textContent = portfolioData.title;
+            document.getElementById('displayTagline').textContent = portfolioData.tagline;
+            document.getElementById('displayBio').textContent = portfolioData.bio;
+            document.getElementById('displayStatus').textContent = portfolioData.status;
+            document.getElementById('displayAvatar').src = portfolioData.avatar;
+            document.getElementById('displayResumeBtn').href = portfolioData.resumeUrl || '#';
+
+            document.getElementById('statGpa').textContent = portfolioData.stats?.gpa || '3.9';
+            document.getElementById('statProjects').textContent = portfolioData.stats?.projects || '10+';
+            document.getElementById('statAwards').textContent = portfolioData.stats?.awards || '5';
+            document.getElementById('statLeadership').textContent = portfolioData.stats?.leadership || '100+';
+
+            document.getElementById('displayContactEmail').textContent = portfolioData.email;
+            document.getElementById('displayContactEmail').href = `mailto:${portfolioData.email}`;
+            document.getElementById('displayContactLocation').textContent = portfolioData.location;
+            document.getElementById('footerName').textContent = portfolioData.name;
+
+            renderSocials();
+            renderSkills();
+            renderProjects();
+            renderExperience();
+            renderAchievements();
+            syncDrawerInputs();
+        }
+
+        function renderSocials() {
+            const container = document.getElementById('socialLinksContainer');
+            container.innerHTML = '';
+            if (portfolioData.socials?.github) {
+                container.innerHTML += `<a href="${portfolioData.socials.github}" target="_blank" class="p-2.5 rounded-xl text-slate-500 hover:text-theme-600 transition-colors"><i class="fa-brands fa-github text-lg"></i></a>`;
+            }
+            if (portfolioData.socials?.linkedin) {
+                container.innerHTML += `<a href="${portfolioData.socials.linkedin}" target="_blank" class="p-2.5 rounded-xl text-slate-500 hover:text-theme-600 transition-colors"><i class="fa-brands fa-linkedin text-lg"></i></a>`;
+            }
+            if (portfolioData.socials?.instagram) {
+                container.innerHTML += `<a href="${portfolioData.socials.instagram}" target="_blank" class="p-2.5 rounded-xl text-slate-500 hover:text-theme-600 transition-colors"><i class="fa-brands fa-instagram text-lg"></i></a>`;
+            }
+        }
+
+        function renderSkills() {
+            const container = document.getElementById('skillsContainer');
+            container.innerHTML = portfolioData.skills.map((group, groupIdx) => `
+                <div class="glass-card p-6 rounded-3xl shadow-sm hover:shadow-md transition-all">
+                    <h4 class="font-serif font-bold text-slate-900 dark:text-white mb-4 text-lg flex items-center justify-between">
+                        <span>${group.category}</span>
+                    </h4>
+                    <div class="flex flex-wrap gap-2">
+                        ${group.items.map((skill, itemIdx) => `
+                            <span class="px-3 py-1.5 rounded-xl bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-medium border border-slate-200/80 dark:border-slate-700/60 shadow-sm flex items-center gap-1.5 group">
+                                ${skill}
+                                <i onclick="removeSkillItem(${groupIdx}, ${itemIdx})" class="fa-solid fa-xmark text-[10px] text-slate-400 hover:text-rose-500 cursor-pointer opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                            </span>
+                        `).join('')}
+                        <button onclick="addSkillItem(${groupIdx})" class="px-3 py-1.5 rounded-xl border border-dashed border-theme-300 dark:border-theme-800 text-theme-600 dark:text-theme-400 text-xs font-semibold hover:bg-theme-50 transition-colors">
+                            <i class="fa-solid fa-plus text-[10px]"></i> Add
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderProjects() {
+            const container = document.getElementById('projectsGrid');
+            container.innerHTML = portfolioData.projects.map((p, idx) => `
+                <div class="glass-card rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col group border border-slate-200/80 dark:border-slate-800/80">
+                    <div class="relative h-48 overflow-hidden bg-slate-100 dark:bg-slate-800">
+                        <img src="${p.image}" alt="${p.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <button onclick="removeProject(${idx})" class="absolute top-3 right-3 w-8 h-8 rounded-full bg-slate-900/70 text-white flex items-center justify-center text-xs opacity-0 group-hover:opacity-100 transition-opacity hover:bg-rose-600">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+                        <div>
+                            <h4 class="text-lg font-serif font-bold text-slate-900 dark:text-white mb-2">${p.title}</h4>
+                            <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">${p.description}</p>
+                        </div>
+                        <div class="space-y-4 pt-2">
+                            <div class="flex flex-wrap gap-1.5">
+                                ${p.tags.map(t => `<span class="px-2.5 py-1 rounded-lg bg-theme-50 dark:bg-theme-950 text-theme-700 dark:text-theme-300 text-[10px] font-mono">${t}</span>`).join('')}
+                            </div>
+                            <div class="flex items-center gap-3 text-xs font-semibold pt-2 border-t border-slate-100 dark:border-slate-800">
+                                <button onclick="openProjectModal(${idx})" class="text-theme-600 dark:text-theme-400 hover:underline flex items-center gap-1">
+                                    View Details <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderExperience() {
+            const container = document.getElementById('experienceTimeline');
+            container.innerHTML = portfolioData.experience.map((e, idx) => `
+                <div class="relative group">
+                    <div class="absolute -left-[31px] sm:-left-[47px] top-1.5 w-4 h-4 rounded-full border-2 border-theme-600 bg-white dark:bg-slate-950"></div>
+                    <div class="glass-card p-6 rounded-3xl shadow-sm relative">
+                        <button onclick="removeExperience(${idx})" class="absolute top-4 right-4 text-slate-400 hover:text-rose-500 transition-colors text-xs">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                        <span class="text-xs font-mono font-bold text-theme-600 dark:text-theme-400">${e.period}</span>
+                        <h4 class="text-lg font-serif font-bold text-slate-900 dark:text-white mt-1">${e.title}</h4>
+                        <p class="text-xs font-semibold text-slate-600 dark:text-slate-300">${e.organization}</p>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 leading-relaxed">${e.description}</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderAchievements() {
+            const container = document.getElementById('achievementsGrid');
+            container.innerHTML = portfolioData.achievements.map((a, idx) => `
+                <div class="glass-card p-6 rounded-3xl shadow-sm flex items-start gap-4 relative group">
+                    <div class="w-10 h-10 rounded-2xl bg-theme-100 dark:bg-theme-950 text-theme-600 dark:text-theme-300 flex items-center justify-center shrink-0">
+                        <i class="fa-solid fa-award text-lg"></i>
+                    </div>
+                    <div class="flex-1">
+                        <span class="text-[10px] font-mono text-slate-400 uppercase">${a.year}</span>
+                        <h4 class="text-sm font-bold text-slate-900 dark:text-white">${a.title}</h4>
+                        <p class="text-xs text-slate-500 dark:text-slate-400">${a.issuer}</p>
+                    </div>
+                    <button onclick="removeAchievement(${idx})" class="text-slate-400 hover:text-rose-500 transition-colors text-xs opacity-0 group-hover:opacity-100">
+                        <i class="fa-solid fa-trash"></i>
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        function syncDrawerInputs() {
+            document.getElementById('editName').value = portfolioData.name || '';
+            document.getElementById('editPronouns').value = portfolioData.pronouns || '';
+            document.getElementById('editTitle').value = portfolioData.title || '';
+            document.getElementById('editBio').value = portfolioData.bio || '';
+            document.getElementById('editAvatar').value = portfolioData.avatar || '';
+            document.getElementById('editGpa').value = portfolioData.stats?.gpa || '';
+            document.getElementById('editProjectsBuilt').value = portfolioData.stats?.projects || '';
+            document.getElementById('editAwards').value = portfolioData.stats?.awards || '';
+            document.getElementById('editLeadership').value = portfolioData.stats?.leadership || '';
+        }
+
+        function setThemePalette(palette, triggerSave = true) {
+            document.body.classList.remove('theme-lavender', 'theme-sage', 'theme-coral', 'theme-minimal');
+            if (palette !== 'rose') {
+                document.body.classList.add(`theme-${palette}`);
+            }
+            portfolioData.theme = palette;
+            if (triggerSave) saveData();
+        }
+
+        function updateField(key, val) {
+            portfolioData[key] = val;
+            saveData();
+        }
+
+        function updateStat(key, val) {
+            if (!portfolioData.stats) portfolioData.stats = {};
+            portfolioData.stats[key] = val;
+            saveData();
+        }
+
+        function addNewProject() {
+            const title = prompt("Project Title:", "EmpowerHer AI");
+            if (!title) return;
+            portfolioData.projects.push({
+                id: Date.now(),
+                title: title,
+                description: "An innovative web project empowering community mentorship.",
+                tags: ["React", "Tailwind CSS"],
+                image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=600",
+                github: "https://github.com",
+                demo: "https://example.com"
+            });
+            saveData();
+            showToast("New project added!");
+        }
+
+        function removeProject(idx) {
+            portfolioData.projects.splice(idx, 1);
+            saveData();
+        }
+
+        function openProjectModal(idx) {
+            const p = portfolioData.projects[idx];
+            document.getElementById('modalImg').src = p.image;
+            document.getElementById('modalTitle').textContent = p.title;
+            document.getElementById('modalDesc').textContent = p.description;
+            document.getElementById('modalDemoLink').href = p.demo || '#';
+            document.getElementById('modalGithubLink').href = p.github || '#';
+            document.getElementById('modalTags').innerHTML = p.tags.map(t => `<span class="px-2.5 py-1 rounded-lg bg-theme-100 text-theme-800 text-[10px] font-mono">${t}</span>`).join('');
+            document.getElementById('projectModal').classList.remove('hidden');
+        }
+
+        function closeProjectModal() {
+            document.getElementById('projectModal').classList.add('hidden');
+        }
+
+        function addNewExperience() {
+            const title = prompt("Role Title:", "Research Assistant");
+            if (!title) return;
+            portfolioData.experience.unshift({
+                title: title,
+                organization: prompt("Organization/Company:", "Stanford AI Lab") || "",
+                period: "2025 - Present",
+                description: "Conducting novel artificial intelligence research and user studies."
+            });
+            saveData();
+        }
+
+        function removeExperience(idx) {
+            portfolioData.experience.splice(idx, 1);
+            saveData();
+        }
+
+        function addNewAchievement() {
+            const title = prompt("Honor Title:", "Dean's Award");
+            if (!title) return;
+            portfolioData.achievements.unshift({
+                title: title,
+                issuer: prompt("Issuer:", "University") || "",
+                year: "2025"
+            });
+            saveData();
+        }
+
+        function removeAchievement(idx) {
+            portfolioData.achievements.splice(idx, 1);
+            saveData();
+        }
+
+        function addSkillItem(catIdx) {
+            const name = prompt("Enter skill name:");
+            if (name) {
+                portfolioData.skills[catIdx].items.push(name);
+                saveData();
+            }
+        }
+
+        function removeSkillItem(catIdx, itemIdx) {
+            portfolioData.skills[catIdx].items.splice(itemIdx, 1);
+            saveData();
+        }
+
+        function toggleEditDrawer() {
+            document.getElementById('editorDrawer').classList.toggle('translate-x-full');
+        }
+
+        function exportJSON() {
+            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(portfolioData, null, 2));
+            const a = document.createElement('a');
+            a.href = dataStr;
+            a.download = `portfolio-${portfolioData.name.toLowerCase().replace(/\s+/g, '-')}.json`;
+            a.click();
+            showToast("Exported JSON Config!");
+        }
+
+        function importJSON(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = (event) => {
+                try {
+                    portfolioData = JSON.parse(event.target.result);
+                    saveData();
+                    showToast("Portfolio Imported!");
+                } catch (err) {
+                    alert("Invalid JSON file.");
+                }
+            };
+            reader.readAsText(file);
+        }
+
+        function copyDataToClipboard() {
+            const text = JSON.stringify(portfolioData, null, 2);
+            const ta = document.createElement('textarea');
+            ta.value = text;
+            document.body.appendChild(ta);
+            ta.select();
+            document.execCommand('copy');
+            document.body.removeChild(ta);
+            showToast("JSON copied to clipboard!");
+        }
+
+        function resetDataToDefault() {
+            if (confirm("Reset to default sample data?")) {
+                portfolioData = JSON.parse(JSON.stringify(defaultPortfolioData));
+                saveData();
+                showToast("Reset to default!");
+            }
+        }
+
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            showToast("Message sent successfully!");
+            e.target.reset();
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toastMessage').textContent = msg;
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0');
+                toast.classList.remove('translate-y-0', 'opacity-100');
+            }, 3000);
+        }
+
+        function initThemeMode() {
+            const themeBtn = document.getElementById('themeToggle');
+            const isDark = localStorage.getItem('theme_mode') === 'dark';
+            if (isDark) document.documentElement.classList.add('dark');
+
+            themeBtn.addEventListener('click', () => {
+                document.documentElement.classList.toggle('dark');
+                localStorage.setItem('theme_mode', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+            });
+        }
+    </script>
+</body>
+</html>

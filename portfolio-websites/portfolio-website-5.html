@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cloud & DevOps Engineer Portfolio</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Inter Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        enterprise: {
+                            bg: '#f8fafc',
+                            card: '#ffffff',
+                            border: '#e2e8f0',
+                            primary: '#2563eb',
+                            navy: '#0f172a',
+                            accent: '#0284c7'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-enterprise-bg text-slate-800 font-sans antialiased selection:bg-enterprise-primary selection:text-white">
+
+    <!-- Top Navigation -->
+    <nav class="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-enterprise-border">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 rounded-lg bg-enterprise-primary flex items-center justify-center text-white font-bold text-sm shadow-sm">
+                        CE
+                    </div>
+                    <span class="font-bold text-slate-900 tracking-tight">[Student Name]</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-6 text-sm font-medium text-slate-600">
+                    <a href="#about" class="hover:text-enterprise-primary transition">About</a>
+                    <a href="#skills" class="hover:text-enterprise-primary transition">Competencies</a>
+                    <a href="#projects" class="hover:text-enterprise-primary transition">Projects</a>
+                    <a href="#labs" class="hover:text-enterprise-primary transition">Lab Work</a>
+                </div>
+                <a href="#contact" class="bg-enterprise-primary hover:bg-blue-700 text-white font-semibold text-xs px-4 py-2.5 rounded-lg transition shadow-sm">
+                    Contact Candidate
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 pt-28 pb-20 space-y-16">
+
+        <!-- Hero Section -->
+        <section id="about" class="bg-white border border-enterprise-border rounded-2xl p-8 sm:p-12 shadow-sm flex flex-col md:flex-row items-center justify-between gap-8">
+            <div class="space-y-4 max-w-2xl">
+                <div class="inline-flex items-center gap-2 px-3 py-1 bg-blue-50 border border-blue-200 text-enterprise-primary text-xs font-semibold rounded-full">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500"></span> Available for Full-Time Roles
+                </div>
+                <h1 class="text-3xl sm:text-5xl font-extrabold text-enterprise-navy tracking-tight">
+                    Associate Cloud & DevOps Engineer
+                </h1>
+                <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+                    Cloud Engineering graduate specializing in designing automated, scalable AWS infrastructure, Docker containerization, Kubernetes orchestration, and robust CI/CD pipelines.
+                </p>
+                <div class="flex flex-wrap gap-3 pt-2">
+                    <a href="#" onclick="alert('Attach resume PDF link');" class="bg-enterprise-primary hover:bg-blue-700 text-white text-xs font-semibold px-5 py-2.5 rounded-lg transition shadow-sm flex items-center gap-2">
+                        <i data-lucide="file-text" class="w-4 h-4"></i> View Resume PDF
+                    </a>
+                    <a href="https://github.com" target="_blank" class="bg-slate-100 hover:bg-slate-200 border border-slate-300 text-slate-800 text-xs font-semibold px-5 py-2.5 rounded-lg transition flex items-center gap-2">
+                        <i data-lucide="github" class="w-4 h-4"></i> GitHub Repositories
+                    </a>
+                </div>
+            </div>
+            <div class="shrink-0 text-center">
+                <img src="profile.jpg" alt="Student Headshot" class="w-44 h-44 rounded-2xl object-cover border-4 border-slate-100 shadow-md">
+                <span class="inline-block mt-3 text-xs font-bold text-slate-500">AWS Trained & Certified</span>
+            </div>
+        </section>
+
+        <!-- Skills Matrix -->
+        <section id="skills" class="space-y-6">
+            <h2 class="text-xl font-bold text-enterprise-navy flex items-center gap-2">
+                <i data-lucide="check-square" class="w-5 h-5 text-enterprise-primary"></i> Technical Expertise
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <div class="bg-white p-5 rounded-xl border border-enterprise-border shadow-sm">
+                    <h3 class="font-bold text-sm text-enterprise-navy mb-2">Cloud Platforms</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">AWS (EC2, VPC, S3, IAM, EKS, RDS, CloudFront, Lambda)</p>
+                </div>
+                <div class="bg-white p-5 rounded-xl border border-enterprise-border shadow-sm">
+                    <h3 class="font-bold text-sm text-enterprise-navy mb-2">Infrastructure as Code</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">Terraform (HCL Modules, Remote State S3/DynamoDB), Bash</p>
+                </div>
+                <div class="bg-white p-5 rounded-xl border border-enterprise-border shadow-sm">
+                    <h3 class="font-bold text-sm text-enterprise-navy mb-2">Containers & Delivery</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">Docker, Kubernetes (EKS), GitHub Actions CI/CD</p>
+                </div>
+                <div class="bg-white p-5 rounded-xl border border-enterprise-border shadow-sm">
+                    <h3 class="font-bold text-sm text-enterprise-navy mb-2">Observability</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">Linux Sysadmin, Prometheus, Grafana, CloudWatch</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Projects -->
+        <section id="projects" class="space-y-6">
+            <h2 class="text-xl font-bold text-enterprise-navy flex items-center gap-2">
+                <i data-lucide="folder-git" class="w-5 h-5 text-enterprise-primary"></i> Practical Deployments
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white border border-enterprise-border p-6 rounded-xl shadow-sm flex flex-col justify-between">
+                    <div class="space-y-3">
+                        <span class="text-[10px] font-bold uppercase tracking-wider text-enterprise-primary bg-blue-50 px-2.5 py-1 rounded-md">IaC Capstone</span>
+                        <h3 class="font-bold text-base text-enterprise-navy">AWS EKS Cluster via Terraform</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed">Deployed production-ready Kubernetes infrastructure across multiple availability zones using Terraform automation.</p>
+                    </div>
+                    <a href="https://github.com" target="_blank" class="mt-6 block text-center bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold py-2.5 rounded-lg transition">View Code & Specs</a>
+                </div>
+
+                <div class="bg-white border border-enterprise-border p-6 rounded-xl shadow-sm flex flex-col justify-between">
+                    <div class="space-y-3">
+                        <span class="text-[10px] font-bold uppercase tracking-wider text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-md">CI/CD Pipeline</span>
+                        <h3 class="font-bold text-base text-enterprise-navy">GitHub Actions Container Build</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed">Built an automated workflow that runs unit tests, scans Docker images with Trivy, and pushes artifacts to AWS ECR.</p>
+                    </div>
+                    <a href="https://github.com" target="_blank" class="mt-6 block text-center bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold py-2.5 rounded-lg transition">View Code & Specs</a>
+                </div>
+
+                <div class="bg-white border border-enterprise-border p-6 rounded-xl shadow-sm flex flex-col justify-between">
+                    <div class="space-y-3">
+                        <span class="text-[10px] font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded-md">Observability</span>
+                        <h3 class="font-bold text-base text-enterprise-navy">Prometheus & Grafana Stack</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed">Configured cluster-wide node metrics gathering and custom dashboard alerts using Helm chart deployments.</p>
+                    </div>
+                    <a href="https://github.com" target="_blank" class="mt-6 block text-center bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold py-2.5 rounded-lg transition">View Code & Specs</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Lab Logs -->
+        <section id="labs" class="bg-white border border-enterprise-border p-6 rounded-xl shadow-sm space-y-4">
+            <h3 class="font-bold text-base text-enterprise-navy">Verified Coursework & Labs</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs text-slate-600">
+                <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                    <span class="font-bold text-slate-900">Lab 01: Multi-AZ AWS VPC</span>
+                    <p class="mt-1">Public & private subnets, NAT Gateways, and route tables.</p>
+                </div>
+                <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                    <span class="font-bold text-slate-900">Lab 02: Container Microservices</span>
+                    <p class="mt-1">Multi-stage Dockerfile optimization and Docker Compose.</p>
+                </div>
+                <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                    <span class="font-bold text-slate-900">Lab 03: IaC State Management</span>
+                    <p class="mt-1">S3 remote backend integration with DynamoDB state locking.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer id="contact" class="text-center text-xs text-slate-500 pt-8 border-t border-enterprise-border space-y-3">
+            <p class="font-semibold text-slate-700">Interested in discussing employment opportunities?</p>
+            <div class="flex justify-center gap-4 text-enterprise-primary font-medium">
+                <a href="mailto:student@example.com" class="hover:underline">student@example.com</a>
+                <span>•</span>
+                <a href="https://linkedin.com" target="_blank" class="hover:underline">LinkedIn</a>
+                <span>•</span>
+                <a href="https://github.com" target="_blank" class="hover:underline">GitHub</a>
+            </div>
+            <p>&copy; <span id="year"></span> [Student Name]. Portfolio hosted on GitHub Pages.</p>
+        </footer>
+
+    </main>
+
+    <script>
+        lucide.createIcons();
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

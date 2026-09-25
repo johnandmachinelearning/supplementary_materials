@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cloud Engineer Portfolio | Bento Grid Showcase</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Plus Jakarta Sans Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        bento: {
+                            bg: '#090d16',
+                            card: '#111827',
+                            border: 'rgba(255, 255, 255, 0.08)',
+                            accent: '#8b5cf6', // Violet accent
+                            cyan: '#06b6d4'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-bento-bg text-slate-100 font-sans antialiased selection:bg-violet-500 selection:text-white">
+
+    <!-- Top Navigation -->
+    <nav class="fixed top-0 w-full z-50 bg-bento-bg/70 backdrop-blur-xl border-b border-bento-border">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-violet-600 to-indigo-500 flex items-center justify-center font-extrabold text-white text-sm shadow-lg shadow-violet-500/20">
+                        CE
+                    </div>
+                    <span class="font-bold text-white tracking-tight">Student<span class="text-violet-400">Name</span></span>
+                </div>
+                <div class="hidden md:flex items-center space-x-6 text-xs font-semibold text-slate-400">
+                    <a href="#about" class="hover:text-violet-400 transition">About</a>
+                    <a href="#grid" class="hover:text-violet-400 transition">Experience & Skills</a>
+                    <a href="#projects" class="hover:text-violet-400 transition">Projects</a>
+                </div>
+                <a href="#contact" class="bg-violet-600 hover:bg-violet-500 text-white font-semibold text-xs px-4 py-2 rounded-lg transition shadow-md shadow-violet-600/30">
+                    Get in Touch
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 pt-28 pb-20 space-y-12">
+
+        <!-- Hero Header -->
+        <header id="about" class="text-center max-w-3xl mx-auto space-y-4">
+            <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-violet-500/10 text-violet-400 border border-violet-500/20">
+                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> Open for Entry-Level Roles
+            </span>
+            <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight text-white leading-tight">
+                Architecting modern <span class="bg-gradient-to-r from-violet-400 to-cyan-400 bg-clip-text text-transparent">cloud infrastructure.</span>
+            </h1>
+            <p class="text-slate-400 text-sm sm:text-base leading-relaxed">
+                Hi, I'm <strong class="text-slate-200">[Student Name]</strong>. I specialize in deploying automated, resilient, and containerized cloud applications using AWS, Terraform, Docker, and Kubernetes.
+            </p>
+            <div class="flex flex-wrap justify-center gap-3 pt-2">
+                <a href="#" onclick="alert('Attach resume link here!');" class="bg-violet-600 hover:bg-violet-500 text-white font-bold text-xs px-5 py-2.5 rounded-xl transition shadow-lg shadow-violet-600/25 flex items-center gap-2">
+                    <i data-lucide="download" class="w-4 h-4"></i> Resume PDF
+                </a>
+                <a href="https://github.com" target="_blank" class="bg-slate-900 hover:bg-slate-800 border border-bento-border text-slate-300 font-bold text-xs px-5 py-2.5 rounded-xl transition flex items-center gap-2">
+                    <i data-lucide="github" class="w-4 h-4"></i> GitHub Profile
+                </a>
+            </div>
+        </header>
+
+        <!-- Bento Grid Layout Section -->
+        <section id="grid" class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            
+            <!-- Tile 1: Profile & Bio (2 Cols) -->
+            <div class="md:col-span-2 bg-bento-card border border-bento-border rounded-2xl p-6 flex flex-col sm:flex-row items-center gap-5 hover:border-slate-700 transition">
+                <img src="profile.jpg" alt="Profile" class="w-24 h-24 rounded-2xl object-cover border-2 border-violet-500/30 shrink-0">
+                <div class="space-y-2 text-center sm:text-left">
+                    <span class="text-xs font-bold text-violet-400 uppercase tracking-wider">Graduate Engineer</span>
+                    <h2 class="text-xl font-bold text-white">Cloud Engineering Bootcamp</h2>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        Completed 300+ hours of hands-on cloud labs covering infrastructure automation, continuous integration, and container orchestration.
+                    </p>
+                    <div class="flex justify-center sm:justify-start gap-4 text-xs font-semibold text-slate-300 pt-1">
+                        <span class="flex items-center gap-1"><i data-lucide="check-circle" class="w-3.5 h-3.5 text-emerald-400"></i> Labs Completed</span>
+                        <span class="flex items-center gap-1"><i data-lucide="award" class="w-3.5 h-3.5 text-violet-400"></i> AWS Certified</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tile 2: Live Metrics / Stats -->
+            <div class="bg-bento-card border border-bento-border rounded-2xl p-6 flex flex-col justify-between hover:border-slate-700 transition">
+                <div class="flex items-center justify-between">
+                    <span class="text-xs font-bold text-slate-400">Stats</span>
+                    <i data-lucide="activity" class="w-4 h-4 text-violet-400"></i>
+                </div>
+                <div class="my-4">
+                    <div class="text-3xl font-extrabold text-white">100%</div>
+                    <div class="text-xs text-emerald-400 font-medium flex items-center gap-1 mt-1">
+                        <i data-lucide="trending-up" class="w-3 h-3"></i> Infrastructure as Code
+                    </div>
+                </div>
+                <p class="text-[11px] text-slate-500">100% of labs deployed strictly via Terraform scripts.</p>
+            </div>
+
+            <!-- Tile 3: Social & Links -->
+            <div class="bg-bento-card border border-bento-border rounded-2xl p-6 flex flex-col justify-between hover:border-slate-700 transition">
+                <div class="flex items-center justify-between">
+                    <span class="text-xs font-bold text-slate-400">Connect</span>
+                    <i data-lucide="share-2" class="w-4 h-4 text-cyan-400"></i>
+                </div>
+                <div class="space-y-2 my-3">
+                    <a href="https://linkedin.com" target="_blank" class="flex items-center justify-between p-2 rounded-lg bg-slate-900/60 hover:bg-slate-800 border border-bento-border text-xs text-slate-300 transition">
+                        <span class="flex items-center gap-2"><i data-lucide="linkedin" class="w-4 h-4 text-cyan-400"></i> LinkedIn</span>
+                        <i data-lucide="arrow-up-right" class="w-3.5 h-3.5 text-slate-500"></i>
+                    </a>
+                    <a href="mailto:student@example.com" class="flex items-center justify-between p-2 rounded-lg bg-slate-900/60 hover:bg-slate-800 border border-bento-border text-xs text-slate-300 transition">
+                        <span class="flex items-center gap-2"><i data-lucide="mail" class="w-4 h-4 text-violet-400"></i> Email</span>
+                        <i data-lucide="arrow-up-right" class="w-3.5 h-3.5 text-slate-500"></i>
+                    </a>
+                </div>
+                <span class="text-[10px] text-slate-500">Location: City, Country</span>
+            </div>
+
+            <!-- Tile 4: Core Tech Stack (2 Cols) -->
+            <div class="md:col-span-2 bg-bento-card border border-bento-border rounded-2xl p-6 hover:border-slate-700 transition">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-sm font-bold text-white flex items-center gap-2">
+                        <i data-lucide="cpu" class="w-4 h-4 text-violet-400"></i> Primary Tech Stack
+                    </h3>
+                    <span class="text-[10px] text-slate-500">DevOps & Cloud</span>
+                </div>
+                <div class="flex flex-wrap gap-2">
+                    <span class="px-3 py-1.5 bg-slate-900 border border-bento-border rounded-xl text-xs font-medium text-slate-300">AWS (EC2/S3/VPC)</span>
+                    <span class="px-3 py-1.5 bg-slate-900 border border-bento-border rounded-xl text-xs font-medium text-slate-300">Terraform</span>
+                    <span class="px-3 py-1.5 bg-slate-900 border border-bento-border rounded-xl text-xs font-medium text-slate-300">Docker</span>
+                    <span class="px-3 py-1.5 bg-slate-900 border border-bento-border rounded-xl text-xs font-medium text-slate-300">Kubernetes (EKS)</span>
+                    <span class="px-3 py-1.5 bg-slate-900 border border-bento-border rounded-xl text-xs font-medium text-slate-300">GitHub Actions</span>
+                    <span class="px-3 py-1.5 bg-slate-900 border border-bento-border rounded-xl text-xs font-medium text-slate-300">Linux / Bash</span>
+                    <span class="px-3 py-1.5 bg-slate-900 border border-bento-border rounded-xl text-xs font-medium text-slate-300">Prometheus & Grafana</span>
+                </div>
+            </div>
+
+            <!-- Tile 5: Certifications Banner (2 Cols) -->
+            <div class="md:col-span-2 bg-gradient-to-r from-violet-900/30 via-bento-card to-bento-card border border-bento-border rounded-2xl p-6 flex items-center justify-between hover:border-slate-700 transition">
+                <div class="space-y-1">
+                    <span class="text-[10px] font-bold text-violet-400 uppercase">Certification</span>
+                    <h3 class="text-sm font-bold text-white">AWS Certified Solutions Architect – Associate</h3>
+                    <p class="text-xs text-slate-400">Validated knowledge in designing distributed systems on AWS.</p>
+                </div>
+                <div class="shrink-0 ml-4">
+                    <div class="w-12 h-12 rounded-xl bg-violet-600/20 border border-violet-500/30 flex items-center justify-center text-violet-400">
+                        <i data-lucide="shield-check" class="w-6 h-6"></i>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Featured Projects Section -->
+        <section id="projects" class="space-y-6 pt-6">
+            <div>
+                <h2 class="text-2xl font-bold text-white flex items-center gap-2">
+                    <i data-lucide="folder-git-2" class="w-6 h-6 text-violet-400"></i> Featured Cloud Projects
+                </h2>
+                <p class="text-xs text-slate-400 mt-1">Real-world production environments built and deployed during training.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Project 1 -->
+                <div class="bg-bento-card border border-bento-border rounded-2xl p-6 flex flex-col justify-between hover:border-violet-500/40 transition group">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-[10px] font-semibold bg-violet-500/10 text-violet-400 px-2.5 py-1 rounded-full border border-violet-500/20">CAPSTONE</span>
+                            <i data-lucide="external-link" class="w-4 h-4 text-slate-600 group-hover:text-violet-400 transition"></i>
+                        </div>
+                        <h3 class="text-base font-bold text-white mb-2">Automated AWS EKS Deployment</h3>
+                        <p class="text-xs text-slate-400 leading-relaxed mb-6">
+                            Provisioned a highly available AWS EKS cluster with multi-AZ networking using custom Terraform modules.
+                        </p>
+                    </div>
+                    <a href="https://github.com" target="_blank" class="w-full text-center bg-slate-900 hover:bg-slate-800 border border-bento-border text-slate-200 text-xs font-semibold py-2.5 rounded-xl transition flex items-center justify-center gap-2">
+                        <i data-lucide="github" class="w-4 h-4"></i> View Code
+                    </a>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="bg-bento-card border border-bento-border rounded-2xl p-6 flex flex-col justify-between hover:border-violet-500/40 transition group">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-[10px] font-semibold bg-cyan-500/10 text-cyan-400 px-2.5 py-1 rounded-full border border-cyan-500/20">CI/CD</span>
+                            <i data-lucide="external-link" class="w-4 h-4 text-slate-600 group-hover:text-cyan-400 transition"></i>
+                        </div>
+                        <h3 class="text-base font-bold text-white mb-2">GitHub Actions Container Pipeline</h3>
+                        <p class="text-xs text-slate-400 leading-relaxed mb-6">
+                            Automated pipeline to build Docker images, run vulnerability security scans, and deploy to AWS ECR.
+                        </p>
+                    </div>
+                    <a href="https://github.com" target="_blank" class="w-full text-center bg-slate-900 hover:bg-slate-800 border border-bento-border text-slate-200 text-xs font-semibold py-2.5 rounded-xl transition flex items-center justify-center gap-2">
+                        <i data-lucide="github" class="w-4 h-4"></i> View Code
+                    </a>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="bg-bento-card border border-bento-border rounded-2xl p-6 flex flex-col justify-between hover:border-violet-500/40 transition group">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-[10px] font-semibold bg-emerald-500/10 text-emerald-400 px-2.5 py-1 rounded-full border border-emerald-500/20">OBSERVABILITY</span>
+                            <i data-lucide="external-link" class="w-4 h-4 text-slate-600 group-hover:text-emerald-400 transition"></i>
+                        </div>
+                        <h3 class="text-base font-bold text-white mb-2">Prometheus & Grafana Monitoring</h3>
+                        <p class="text-xs text-slate-400 leading-relaxed mb-6">
+                            Deployed a full monitoring stack on Kubernetes using Helm charts to track cluster performance metrics.
+                        </p>
+                    </div>
+                    <a href="https://github.com" target="_blank" class="w-full text-center bg-slate-900 hover:bg-slate-800 border border-bento-border text-slate-200 text-xs font-semibold py-2.5 rounded-xl transition flex items-center justify-center gap-2">
+                        <i data-lucide="github" class="w-4 h-4"></i> View Code
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer id="contact" class="pt-10 border-t border-bento-border text-center space-y-4">
+            <h3 class="text-lg font-bold text-white">Let's Work Together</h3>
+            <p class="text-xs text-slate-400 max-w-sm mx-auto">Open for junior or associate Cloud, DevOps, or Site Reliability Engineering roles.</p>
+            <div class="flex justify-center gap-4 text-slate-400 text-xs font-semibold pt-2">
+                <a href="mailto:student@example.com" class="hover:text-violet-400 transition">Email</a>
+                <span>•</span>
+                <a href="https://linkedin.com" target="_blank" class="hover:text-violet-400 transition">LinkedIn</a>
+                <span>•</span>
+                <a href="https://github.com" target="_blank" class="hover:text-violet-400 transition">GitHub</a>
+            </div>
+            <p class="text-[11px] text-slate-600">&copy; <span id="year"></span> [Student Name]. Hosted on GitHub Pages.</p>
+        </footer>
+
+    </main>
+
+    <script>
+        lucide.createIcons();
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

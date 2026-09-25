@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cloud Native Engineer | Student Portfolio</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Fira Code Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        mono: ['Fira Code', 'monospace'],
+                    },
+                    colors: {
+                        gitops: {
+                            bg: '#0b1312',
+                            card: '#121f1d',
+                            border: '#1d3330',
+                            emerald: '#10b981',
+                            light: '#a7f3d0'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gitops-bg text-slate-200 font-mono antialiased selection:bg-gitops-emerald selection:text-black">
+
+    <!-- Navbar -->
+    <nav class="fixed top-0 w-full z-50 bg-gitops-bg/90 backdrop-blur border-b border-gitops-border">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center gap-2">
+                    <span class="text-gitops-emerald font-bold">&lt;CloudNative&gt;</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-6 text-xs text-slate-400">
+                    <a href="#about" class="hover:text-gitops-emerald transition">git_about</a>
+                    <a href="#skills" class="hover:text-gitops-emerald transition">git_stack</a>
+                    <a href="#projects" class="hover:text-gitops-emerald transition">git_projects</a>
+                </div>
+                <a href="#contact" class="border border-gitops-emerald text-gitops-emerald hover:bg-gitops-emerald/10 text-xs px-3 py-1.5 rounded transition">
+                    connect()
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 pt-28 pb-20 space-y-16">
+
+        <!-- Hero Header -->
+        <section id="about" class="bg-gitops-card border border-gitops-border p-8 rounded-xl relative overflow-hidden">
+            <div class="flex flex-col lg:flex-row items-center justify-between gap-8">
+                <div class="space-y-4 max-w-2xl">
+                    <div class="inline-flex items-center gap-2 text-xs text-gitops-emerald bg-gitops-emerald/10 border border-gitops-emerald/30 px-3 py-1 rounded">
+                        <i data-lucide="git-commit" class="w-4 h-4"></i> Status: Ready to deploy
+                    </div>
+                    <h1 class="text-3xl sm:text-4xl font-extrabold text-white">
+                        [Student Name] -- Cloud & DevOps
+                    </h1>
+                    <p class="text-slate-400 text-xs sm:text-sm leading-relaxed">
+                        Bootcamp-certified Associate Cloud Engineer focused on GitOps workflows, AWS Cloud Architecture, Docker containers, Kubernetes deployments, and IaC code bases.
+                    </p>
+                    <div class="flex flex-wrap gap-3 pt-2">
+                        <a href="#" onclick="alert('Link resume PDF here!');" class="bg-gitops-emerald text-black font-bold text-xs px-4 py-2 rounded flex items-center gap-2 hover:bg-emerald-400 transition">
+                            <i data-lucide="download" class="w-4 h-4"></i> resume.pdf
+                        </a>
+                        <a href="https://github.com" target="_blank" class="border border-gitops-border text-slate-300 text-xs font-bold px-4 py-2 rounded flex items-center gap-2 hover:border-slate-500 transition">
+                            <i data-lucide="github" class="w-4 h-4"></i> github_profile
+                        </a>
+                    </div>
+                </div>
+                <div class="shrink-0 text-center">
+                    <img src="profile.jpg" alt="Profile" class="w-40 h-40 rounded-lg object-cover border-2 border-gitops-emerald/50">
+                </div>
+            </div>
+        </section>
+
+        <!-- Tech Matrix -->
+        <section id="skills" class="space-y-4">
+            <h2 class="text-lg font-bold text-white flex items-center gap-2">
+                <i data-lucide="terminal" class="w-5 h-5 text-gitops-emerald"></i> Core Stack & Competencies
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="bg-gitops-card p-5 rounded-lg border border-gitops-border">
+                    <span class="text-xs text-gitops-emerald font-bold">// 01. Cloud Platform</span>
+                    <h3 class="text-sm font-bold text-white mt-1 mb-2">AWS Ecosystem</h3>
+                    <p class="text-xs text-slate-400">EC2, S3, VPC, IAM, EKS, RDS, CloudFront, Lambda, CloudWatch.</p>
+                </div>
+                <div class="bg-gitops-card p-5 rounded-lg border border-gitops-border">
+                    <span class="text-xs text-gitops-emerald font-bold">// 02. Automation</span>
+                    <h3 class="text-sm font-bold text-white mt-1 mb-2">Terraform & CI/CD</h3>
+                    <p class="text-xs text-slate-400">Declarative IaC (HCL), GitHub Actions workflows, Bash scripting.</p>
+                </div>
+                <div class="bg-gitops-card p-5 rounded-lg border border-gitops-border">
+                    <span class="text-xs text-gitops-emerald font-bold">// 03. Orchestration</span>
+                    <h3 class="text-sm font-bold text-white mt-1 mb-2">Containers & Monitoring</h3>
+                    <p class="text-xs text-slate-400">Docker image optimization, Kubernetes, Helm, Prometheus, Grafana.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Projects -->
+        <section id="projects" class="space-y-4">
+            <h2 class="text-lg font-bold text-white flex items-center gap-2">
+                <i data-lucide="box" class="w-5 h-5 text-gitops-emerald"></i> Production Projects
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-gitops-card border border-gitops-border p-5 rounded-lg flex flex-col justify-between">
+                    <div>
+                        <span class="text-[10px] text-gitops-emerald border border-gitops-emerald/30 px-2 py-0.5 rounded">TERRAFORM</span>
+                        <h3 class="text-sm font-bold text-white mt-2 mb-2">AWS EKS Cluster Setup</h3>
+                        <p class="text-xs text-slate-400 leading-relaxed mb-4">Provisioned a Kubernetes cluster across multi-AZ VPC subnets using modular IaC.</p>
+                    </div>
+                    <a href="https://github.com" target="_blank" class="block text-center border border-gitops-border hover:border-gitops-emerald text-gitops-emerald text-xs py-2 rounded transition">git clone repo</a>
+                </div>
+
+                <div class="bg-gitops-card border border-gitops-border p-5 rounded-lg flex flex-col justify-between">
+                    <div>
+                        <span class="text-[10px] text-gitops-emerald border border-gitops-emerald/30 px-2 py-0.5 rounded">CI/CD PIPELINE</span>
+                        <h3 class="text-sm font-bold text-white mt-2 mb-2">Container Security Workflow</h3>
+                        <p class="text-xs text-slate-400 leading-relaxed mb-4">GitHub Actions pipeline running Trivy security scans before pushing images to AWS ECR.</p>
+                    </div>
+                    <a href="https://github.com" target="_blank" class="block text-center border border-gitops-border hover:border-gitops-emerald text-gitops-emerald text-xs py-2 rounded transition">git clone repo</a>
+                </div>
+
+                <div class="bg-gitops-card border border-gitops-border p-5 rounded-lg flex flex-col justify-between">
+                    <div>
+                        <span class="text-[10px] text-gitops-emerald border border-gitops-emerald/30 px-2 py-0.5 rounded">OBSERVABILITY</span>
+                        <h3 class="text-sm font-bold text-white mt-2 mb-2">K8s Monitoring Stack</h3>
+                        <p class="text-xs text-slate-400 leading-relaxed mb-4">Configured Prometheus & Grafana with custom alert thresholds for pod CPU/memory.</p>
+                    </div>
+                    <a href="https://github.com" target="_blank" class="block text-center border border-gitops-border hover:border-gitops-emerald text-gitops-emerald text-xs py-2 rounded transition">git clone repo</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer id="contact" class="text-center text-xs text-slate-500 pt-8 border-t border-gitops-border space-y-3">
+            <div class="flex justify-center gap-4 text-gitops-emerald">
+                <a href="mailto:student@example.com">email</a>
+                <span>|</span>
+                <a href="https://linkedin.com" target="_blank">linkedin</a>
+                <span>|</span>
+                <a href="https://github.com" target="_blank">github</a>
+            </div>
+            <p>&copy; <span id="year"></span> [Student Name]. Hosted on GitHub Pages.</p>
+        </footer>
+
+    </main>
+
+    <script>
+        lucide.createIcons();
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

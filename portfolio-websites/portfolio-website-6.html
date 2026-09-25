@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jordan Vance | Principal Engineer & UI Architect</title>
+    
+    <!-- Configure Tailwind CSS pre-load object -->
+    <script>
+        window.tailwind = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        emerald: {
+                            500: '#10b981',
+                            600: '#059669',
+                        },
+                        violet: {
+                            500: '#8b5cf6',
+                            600: '#7c3aed',
+                        },
+                        amber: {
+                            400: '#fbbf24',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'Fira Code', 'monospace']
+                    }
+                }
+            }
+        };
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        
+        .font-mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* Custom Bento Glass */
+        .bento-card {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .dark .bento-card {
+            background: rgba(15, 23, 42, 0.65);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+        }
+
+        .bento-card:hover {
+            border-color: rgba(139, 92, 246, 0.4);
+            box-shadow: 0 12px 30px -10px rgba(139, 92, 246, 0.15);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(15, 23, 42, 0.1);
+        }
+        .dark ::-webkit-scrollbar-track {
+            background: rgba(15, 23, 42, 0.6);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #8b5cf6;
+            border-radius: 4px;
+        }
+
+        /* Gradient Text */
+        .text-gradient {
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Glowing Accent Effect */
+        .glow-bg {
+            background: radial-gradient(circle at 50% 0%, rgba(139, 92, 246, 0.15) 0%, transparent 60%);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 min-h-screen relative glow-bg selection:bg-violet-500 selection:text-white">
+
+    <!-- Floating Navbar -->
+    <header class="fixed top-4 inset-x-0 z-40 max-w-5xl mx-auto px-4">
+        <nav class="bento-card rounded-2xl px-5 py-3.5 flex items-center justify-between shadow-lg shadow-black/5">
+            <!-- Brand Logo -->
+            <a href="#hero" class="flex items-center gap-2.5 group">
+                <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-violet-600 to-indigo-500 flex items-center justify-center text-white font-extrabold text-sm shadow-md shadow-violet-500/20 group-hover:rotate-6 transition-transform">
+                    JV
+                </div>
+                <span class="font-bold text-base tracking-tight hidden sm:inline-block">
+                    jordan<span class="text-violet-500 font-mono">.dev</span>
+                </span>
+            </a>
+
+            <!-- Nav Links -->
+            <div class="flex items-center gap-1 sm:gap-6 text-sm font-medium text-slate-600 dark:text-slate-300">
+                <a href="#about" class="hover:text-violet-500 transition-colors px-2 py-1">About</a>
+                <a href="#projects" class="hover:text-violet-500 transition-colors px-2 py-1">Works</a>
+                <a href="#skills" class="hover:text-violet-500 transition-colors px-2 py-1">Stack</a>
+                <a href="#experience" class="hover:text-violet-500 transition-colors px-2 py-1">Career</a>
+            </div>
+
+            <!-- Actions -->
+            <div class="flex items-center gap-2">
+                <!-- Dark Mode Toggle -->
+                <button id="theme-toggle" aria-label="Toggle Theme" class="p-2 rounded-xl bg-slate-200/70 dark:bg-slate-800/80 text-slate-700 dark:text-slate-200 hover:bg-slate-300 dark:hover:bg-slate-700 transition-colors">
+                    <i id="theme-toggle-dark-icon" class="fa-solid fa-moon text-sm hidden"></i>
+                    <i id="theme-toggle-light-icon" class="fa-solid fa-sun text-sm"></i>
+                </button>
+
+                <!-- Open Resume Modal Button -->
+                <button id="open-resume-btn" class="hidden sm:inline-flex items-center gap-2 px-4 py-2 text-xs font-bold text-white bg-violet-600 hover:bg-violet-700 rounded-xl transition-colors shadow-md shadow-violet-500/20">
+                    <i class="fa-solid fa-file-pdf"></i> Resume
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero / Bento Box Section -->
+    <section id="hero" class="pt-28 pb-16 px-4 max-w-6xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            
+            <!-- Main Bio Card (Span 2x2) -->
+            <div class="md:col-span-2 lg:col-span-2 bento-card p-6 sm:p-8 rounded-3xl flex flex-col justify-between space-y-6">
+                <div class="space-y-4">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 text-xs font-semibold">
+                        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                        Available for Senior & Staff Roles
+                    </div>
+                    
+                    <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight">
+                        Architecting digital products with <span class="text-gradient">precision & scale.</span>
+                    </h1>
+                    
+                    <p class="text-slate-600 dark:text-slate-400 text-sm sm:text-base leading-relaxed">
+                        I'm <strong class="text-slate-900 dark:text-white">Jordan Vance</strong>, a Principal Engineer & UI Architect specializing in high-throughput frontend systems, reactive UI components, and modern full-stack architectures.
+                    </p>
+                </div>
+
+                <div class="flex flex-wrap gap-3 pt-2">
+                    <a href="#contact" class="px-5 py-3 rounded-xl bg-violet-600 hover:bg-violet-700 text-white font-semibold text-sm transition-all shadow-md shadow-violet-500/25 flex items-center gap-2">
+                        <span>Get In Touch</span>
+                        <i class="fa-solid fa-arrow-right text-xs"></i>
+                    </a>
+                    <a href="#projects" class="px-5 py-3 rounded-xl bg-slate-200/80 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 font-semibold text-sm transition-all">
+                        Explore Selected Works
+                    </a>
+                </div>
+            </div>
+
+            <!-- Profile Avatar & Quick Info Card -->
+            <div class="bento-card p-6 rounded-3xl flex flex-col items-center justify-center text-center space-y-4">
+                <div class="relative w-28 h-28 rounded-2xl overflow-hidden ring-4 ring-violet-500/20 shadow-xl">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80" 
+                         alt="Jordan Vance Profile" 
+                         class="w-full h-full object-cover"
+                         onerror="this.src='https://placehold.co/300x300/8b5cf6/ffffff?text=Jordan+Vance'">
+                </div>
+                <div>
+                    <h2 class="text-lg font-bold">Jordan Vance</h2>
+                    <p class="text-xs text-violet-500 font-medium">Principal Engineer</p>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1"><i class="fa-solid fa-location-dot text-rose-500 mr-1"></i> San Francisco, CA</p>
+                </div>
+            </div>
+
+            <!-- Realtime Clock & Status Card -->
+            <div class="bento-card p-6 rounded-3xl flex flex-col justify-between space-y-4">
+                <div class="flex items-center justify-between">
+                    <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Timezone</span>
+                    <i class="fa-regular fa-clock text-violet-500"></i>
+                </div>
+                <div>
+                    <div id="live-clock" class="text-3xl font-extrabold font-mono text-slate-900 dark:text-white">00:00:00</div>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Pacific Time (UTC-7)</p>
+                </div>
+                <div class="p-3 rounded-xl bg-slate-100 dark:bg-slate-900/80 text-xs text-slate-600 dark:text-slate-300 flex items-center justify-between border border-slate-200 dark:border-slate-800">
+                    <span>Working Hours</span>
+                    <span class="font-bold text-emerald-500">Online</span>
+                </div>
+            </div>
+
+            <!-- Interactive Code Snippet Card (Span 2) -->
+            <div class="md:col-span-2 bento-card p-6 rounded-3xl flex flex-col justify-between space-y-4 font-mono text-xs">
+                <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-3">
+                    <div class="flex items-center gap-2">
+                        <span class="w-3 h-3 rounded-full bg-rose-500 inline-block"></span>
+                        <span class="w-3 h-3 rounded-full bg-amber-400 inline-block"></span>
+                        <span class="w-3 h-3 rounded-full bg-emerald-500 inline-block"></span>
+                        <span class="text-slate-400 text-2xs ml-2">architect.config.ts</span>
+                    </div>
+                    <button id="copy-code-btn" class="text-slate-400 hover:text-violet-500 transition-colors" title="Copy Code">
+                        <i class="fa-regular fa-copy"></i>
+                    </button>
+                </div>
+                <pre class="overflow-x-auto text-slate-700 dark:text-slate-300 leading-relaxed"><code id="code-block"><span class="text-violet-400">export const</span> engineer = {
+  name: <span class="text-emerald-400">'Jordan Vance'</span>,
+  title: <span class="text-emerald-400">'Principal UI Architect'</span>,
+  specialties: [<span class="text-amber-400">'Design Systems'</span>, <span class="text-amber-400">'Micro-Frontends'</span>, <span class="text-amber-400">'AI Interfaces'</span>],
+  yearsActive: <span class="text-violet-400">8</span>,
+  status: <span class="text-emerald-400">'Ready for next breakthrough project'</span>
+};</code></pre>
+                <div class="text-2xs text-slate-400 flex items-center justify-between">
+                    <span>TypeScript 5.4</span>
+                    <span class="text-emerald-400">✓ Typechecked Clean</span>
+                </div>
+            </div>
+
+            <!-- Metrics Bento Cards (Span 2) -->
+            <div class="md:col-span-2 grid grid-cols-2 gap-4">
+                <div class="bento-card p-5 rounded-3xl flex flex-col justify-center items-center text-center">
+                    <span class="text-3xl sm:text-4xl font-extrabold text-violet-500">8+</span>
+                    <span class="text-xs font-semibold text-slate-500 dark:text-slate-400 mt-1">Years Experience</span>
+                </div>
+                <div class="bento-card p-5 rounded-3xl flex flex-col justify-center items-center text-center">
+                    <span class="text-3xl sm:text-4xl font-extrabold text-indigo-500">50M+</span>
+                    <span class="text-xs font-semibold text-slate-500 dark:text-slate-400 mt-1">Monthly Active Users</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Tech Stack Section -->
+    <section id="skills" class="py-16 px-4 max-w-6xl mx-auto">
+        <div class="space-y-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+                <div>
+                    <h2 class="text-xs uppercase font-extrabold tracking-widest text-violet-500">Technical Mastery</h2>
+                    <p class="text-2xl sm:text-3xl font-extrabold">Tech Stack & Ecosystem</p>
+                </div>
+                <!-- Skill Filter Tabs -->
+                <div class="flex flex-wrap gap-2" id="skill-tabs">
+                    <button data-tab="all" class="skill-tab px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-violet-600 text-white shadow-sm">All</button>
+                    <button data-tab="frontend" class="skill-tab px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-slate-200/70 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-300">Frontend</button>
+                    <button data-tab="backend" class="skill-tab px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-slate-200/70 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-300">Backend & Cloud</button>
+                    <button data-tab="ai" class="skill-tab px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-slate-200/70 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-300">AI / Tooling</button>
+                </div>
+            </div>
+
+            <!-- Skills Grid -->
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4" id="skills-container">
+                
+                <!-- React / Next.js -->
+                <div class="skill-card bento-card p-4 rounded-2xl flex flex-col items-center justify-center text-center gap-2 group hover:border-violet-500" data-category="frontend">
+                    <i class="fa-brands fa-react text-3xl text-cyan-400 group-hover:scale-110 transition-transform"></i>
+                    <span class="text-xs font-bold">React / Next.js</span>
+                    <span class="text-2xs text-slate-400">8 yrs • Expert</span>
+                </div>
+
+                <!-- TypeScript -->
+                <div class="skill-card bento-card p-4 rounded-2xl flex flex-col items-center justify-center text-center gap-2 group hover:border-violet-500" data-category="frontend">
+                    <i class="fa-code text-3xl text-blue-500 group-hover:scale-110 transition-transform"></i>
+                    <span class="text-xs font-bold">TypeScript</span>
+                    <span class="text-2xs text-slate-400">6 yrs • Expert</span>
+                </div>
+
+                <!-- Tailwind CSS -->
+                <div class="skill-card bento-card p-4 rounded-2xl flex flex-col items-center justify-center text-center gap-2 group hover:border-violet-500" data-category="frontend">
+                    <i class="fa-css3-alt text-3xl text-sky-400 group-hover:scale-110 transition-transform"></i>
+                    <span class="text-xs font-bold">Tailwind CSS</span>
+                    <span class="text-2xs text-slate-400">5 yrs • Expert</span>
+                </div>
+
+                <!-- Node.js -->
+                <div class="skill-card bento-card p-4 rounded-2xl flex flex-col items-center justify-center text-center gap-2 group hover:border-violet-500" data-category="backend">
+                    <i class="fa-brands fa-node-js text-3xl text-emerald-500 group-hover:scale-110 transition-transform"></i>
+                    <span class="text-xs font-bold">Node.js / Express</span>
+                    <span class="text-2xs text-slate-400">7 yrs • Advanced</span>
+                </div>
+
+                <!-- Python / FastAPI -->
+                <div class="skill-card bento-card p-4 rounded-2xl flex flex-col items-center justify-center text-center gap-2 group hover:border-violet-500" data-category="backend">
+                    <i class="fa-brands fa-python text-3xl text-amber-400 group-hover:scale-110 transition-transform"></i>
+                    <span class="text-xs font-bold">Python / FastAPI</span>
+                    <span class="text-2xs text-slate-400">5 yrs • Advanced</span>
+                </div>
+
+                <!-- PostgreSQL / Supabase -->
+                <div class="skill-card bento-card p-4 rounded-2xl flex flex-col items-center justify-center text-center gap-2 group hover:border-violet-500" data-category="backend">
+                    <i class="fa-database text-3xl text-indigo-400 group-hover:scale-110 transition-transform"></i>
+                    <span class="text-xs font-bold">PostgreSQL</span>
+                    <span class="text-2xs text-slate-400">6 yrs • Advanced</span>
+                </div>
+
+                <!-- GraphQL / REST -->
+                <div class="skill-card bento-card p-4 rounded-2xl flex flex-col items-center justify-center text-center gap-2 group hover:border-violet-500" data-category="backend">
+                    <i class="fa-network-wired text-3xl text-pink-500 group-hover:scale-110 transition-transform"></i>
+                    <span class="text-xs font-bold">GraphQL APIs</span>
+                    <span class="text-2xs text-slate-400">4 yrs • Advanced</span>
+                </div>
+
+                <!-- Docker & Kubernetes -->
+                <div class="skill-card bento-card p-4 rounded-2xl flex flex-col items-center justify-center text-center gap-2 group hover:border-violet-500" data-category="backend">
+                    <i class="fa-brands fa-docker text-3xl text-blue-400 group-hover:scale-110 transition-transform"></i>
+                    <span class="text-xs font-bold">Docker / K8s</span>
+                    <span class="text-2xs text-slate-400">4 yrs • Intermediate</span>
+                </div>
+
+                <!-- OpenAI / LLM Architecture -->
+                <div class="skill-card bento-card p-4 rounded-2xl flex flex-col items-center justify-center text-center gap-2 group hover:border-violet-500" data-category="ai">
+                    <i class="fa-robot text-3xl text-violet-400 group-hover:scale-110 transition-transform"></i>
+                    <span class="text-xs font-bold">OpenAI & RAG</span>
+                    <span class="text-2xs text-slate-400">3 yrs • Specialist</span>
+                </div>
+
+                <!-- WebGL / Three.js -->
+                <div class="skill-card bento-card p-4 rounded-2xl flex flex-col items-center justify-center text-center gap-2 group hover:border-violet-500" data-category="frontend">
+                    <i class="fa-cubes text-3xl text-emerald-400 group-hover:scale-110 transition-transform"></i>
+                    <span class="text-xs font-bold">Three.js / WebGL</span>
+                    <span class="text-2xs text-slate-400">3 yrs • Intermediate</span>
+                </div>
+
+                <!-- Git & CI/CD -->
+                <div class="skill-card bento-card p-4 rounded-2xl flex flex-col items-center justify-center text-center gap-2 group hover:border-violet-500" data-category="ai">
+                    <i class="fa-brands fa-github text-3xl text-slate-300 group-hover:scale-110 transition-transform"></i>
+                    <span class="text-xs font-bold">GitHub Actions</span>
+                    <span class="text-2xs text-slate-400">7 yrs • Expert</span>
+                </div>
+
+                <!-- Figma Design Systems -->
+                <div class="skill-card bento-card p-4 rounded-2xl flex flex-col items-center justify-center text-center gap-2 group hover:border-violet-500" data-category="frontend">
+                    <i class="fa-brands fa-figma text-3xl text-rose-400 group-hover:scale-110 transition-transform"></i>
+                    <span class="text-xs font-bold">Figma Systems</span>
+                    <span class="text-2xs text-slate-400">6 yrs • Expert</span>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-16 px-4 max-w-6xl mx-auto">
+        <div class="space-y-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+                <div>
+                    <h2 class="text-xs uppercase font-extrabold tracking-widest text-violet-500">Selected Case Studies</h2>
+                    <p class="text-2xl sm:text-3xl font-extrabold">Featured Engineering Projects</p>
+                </div>
+
+                <!-- Filter Buttons -->
+                <div class="flex flex-wrap gap-2">
+                    <button data-project-filter="all" class="proj-filter px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-violet-600 text-white shadow-sm">All Works</button>
+                    <button data-project-filter="saas" class="proj-filter px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-slate-200/70 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-300">SaaS & Enterprise</button>
+                    <button data-project-filter="ai" class="proj-filter px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-slate-200/70 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-300">AI Innovations</button>
+                </div>
+            </div>
+
+            <!-- Project Cards Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                
+                <!-- Project 1 -->
+                <div class="project-card bento-card rounded-3xl overflow-hidden flex flex-col justify-between group" data-category="ai" data-id="p1">
+                    <div class="relative h-56 overflow-hidden bg-slate-900">
+                        <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80" 
+                             alt="Cognitive Flow AI Platform" 
+                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                             onerror="this.src='https://placehold.co/600x400/8b5cf6/ffffff?text=Cognitive+Flow'">
+                        <div class="absolute top-4 right-4 bg-slate-950/80 backdrop-blur-md px-3 py-1 rounded-full text-2xs font-bold text-violet-400 border border-violet-500/30">
+                            AI Platform
+                        </div>
+                    </div>
+                    <div class="p-6 space-y-4">
+                        <h3 class="text-xl font-bold group-hover:text-violet-500 transition-colors">Cognitive Flow — Autonomous Agent IDE</h3>
+                        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                            A browser-based workspace for orchestrating multi-agent AI workflows in real-time with visual graph debugging and low-latency websocket updates.
+                        </p>
+                        <div class="flex flex-wrap gap-2 text-2xs font-medium">
+                            <span class="px-2.5 py-1 rounded-lg bg-slate-200/80 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Next.js 14</span>
+                            <span class="px-2.5 py-1 rounded-lg bg-slate-200/80 dark:bg-slate-800 text-slate-700 dark:text-slate-300">FastAPI</span>
+                            <span class="px-2.5 py-1 rounded-lg bg-slate-200/80 dark:bg-slate-800 text-slate-700 dark:text-slate-300">WebSockets</span>
+                            <span class="px-2.5 py-1 rounded-lg bg-slate-200/80 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Tailwind</span>
+                        </div>
+                        <div class="pt-2 flex items-center justify-between border-t border-slate-200 dark:border-slate-800">
+                            <button class="open-details-btn text-xs font-bold text-violet-500 hover:text-violet-600 flex items-center gap-1.5" data-id="p1">
+                                <span>Read Case Study</span>
+                                <i class="fa-solid fa-arrow-right text-2xs"></i>
+                            </button>
+                            <span class="text-2xs text-emerald-500 font-semibold">100k+ Runs/mo</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-card bento-card rounded-3xl overflow-hidden flex flex-col justify-between group" data-category="saas" data-id="p2">
+                    <div class="relative h-56 overflow-hidden bg-slate-900">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80" 
+                             alt="Telemetry Pro Dashboard" 
+                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                             onerror="this.src='https://placehold.co/600x400/3b82f6/ffffff?text=Telemetry+Pro'">
+                        <div class="absolute top-4 right-4 bg-slate-950/80 backdrop-blur-md px-3 py-1 rounded-full text-2xs font-bold text-blue-400 border border-blue-500/30">
+                            Enterprise SaaS
+                        </div>
+                    </div>
+                    <div class="p-6 space-y-4">
+                        <h3 class="text-xl font-bold group-hover:text-violet-500 transition-colors">Telemetry Pro — Real-time Analytics Engine</h3>
+                        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                            High-frequency metric streaming dashboard visualizing 1M+ data points per second with custom Canvas rendering algorithms and sub-50ms latency.
+                        </p>
+                        <div class="flex flex-wrap gap-2 text-2xs font-medium">
+                            <span class="px-2.5 py-1 rounded-lg bg-slate-200/80 dark:bg-slate-800 text-slate-700 dark:text-slate-300">React</span>
+                            <span class="px-2.5 py-1 rounded-lg bg-slate-200/80 dark:bg-slate-800 text-slate-700 dark:text-slate-300">TypeScript</span>
+                            <span class="px-2.5 py-1 rounded-lg bg-slate-200/80 dark:bg-slate-800 text-slate-700 dark:text-slate-300">HTML5 Canvas</span>
+                            <span class="px-2.5 py-1 rounded-lg bg-slate-200/80 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Go</span>
+                        </div>
+                        <div class="pt-2 flex items-center justify-between border-t border-slate-200 dark:border-slate-800">
+                            <button class="open-details-btn text-xs font-bold text-violet-500 hover:text-violet-600 flex items-center gap-1.5" data-id="p2">
+                                <span>Read Case Study</span>
+                                <i class="fa-solid fa-arrow-right text-2xs"></i>
+                            </button>
+                            <span class="text-2xs text-emerald-500 font-semibold">500k Daily Visualizations</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Detail Modal -->
+    <div id="project-modal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md hidden items-center justify-center p-4">
+        <div class="bento-card max-w-2xl w-full rounded-3xl p-6 sm:p-8 space-y-6 relative max-h-[90vh] overflow-y-auto">
+            <button id="close-modal-btn" class="absolute top-6 right-6 w-9 h-9 rounded-full bg-slate-200 dark:bg-slate-800 flex items-center justify-center text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div id="modal-content" class="space-y-4">
+                <!-- Content inserted dynamically via JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Experience Section -->
+    <section id="experience" class="py-16 px-4 max-w-4xl mx-auto">
+        <div class="space-y-8">
+            <div>
+                <h2 class="text-xs uppercase font-extrabold tracking-widest text-violet-500">Career Trajectory</h2>
+                <p class="text-2xl sm:text-3xl font-extrabold">Leadership & Work History</p>
+            </div>
+
+            <div class="space-y-4">
+                
+                <!-- Role 1 -->
+                <div class="bento-card p-6 rounded-3xl space-y-3 relative overflow-hidden">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                        <div>
+                            <h3 class="text-lg font-bold">Principal Frontend Architect</h3>
+                            <p class="text-xs text-violet-500 font-semibold">Nexus Cloud Platform • San Francisco, CA</p>
+                        </div>
+                        <span class="text-2xs font-mono px-3 py-1 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-300 w-fit">2023 - PRESENT</span>
+                    </div>
+                    <ul class="text-xs text-slate-600 dark:text-slate-400 space-y-1.5 list-disc list-inside leading-relaxed">
+                        <li>Architected core design system shared across 14 product squads, increasing UI velocity by 35%.</li>
+                        <li>Reduced client-side bundle size by 42% through strategic code-splitting and micro-frontend federation.</li>
+                        <li>Mentored a team of 18 senior engineers in React Server Components and performance profiling.</li>
+                    </ul>
+                </div>
+
+                <!-- Role 2 -->
+                <div class="bento-card p-6 rounded-3xl space-y-3 relative overflow-hidden">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                        <div>
+                            <h3 class="text-lg font-bold">Staff Software Engineer</h3>
+                            <p class="text-xs text-violet-500 font-semibold">Hyperion Data Labs • Remote</p>
+                        </div>
+                        <span class="text-2xs font-mono px-3 py-1 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-300 w-fit">2020 - 2023</span>
+                    </div>
+                    <ul class="text-xs text-slate-600 dark:text-slate-400 space-y-1.5 list-disc list-inside leading-relaxed">
+                        <li>Built real-time telemetry rendering engine capable of processing millions of WebSocket data points smoothly.</li>
+                        <li>Spearheaded transition from legacy Monolith to Next.js edge-rendered architecture.</li>
+                    </ul>
+                </div>
+
+                <!-- Role 3 -->
+                <div class="bento-card p-6 rounded-3xl space-y-3 relative overflow-hidden">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                        <div>
+                            <h3 class="text-lg font-bold">Senior Full Stack Developer</h3>
+                            <p class="text-xs text-violet-500 font-semibold">Vanguard Creative Agency</p>
+                        </div>
+                        <span class="text-2xs font-mono px-3 py-1 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-300 w-fit">2018 - 2020</span>
+                    </div>
+                    <ul class="text-xs text-slate-600 dark:text-slate-400 space-y-1.5 list-disc list-inside leading-relaxed">
+                        <li>Delivered over 20+ custom WebGL and React applications for Fortune 500 clients.</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 px-4 max-w-4xl mx-auto">
+        <div class="bento-card p-8 sm:p-10 rounded-3xl space-y-8 border-violet-500/20">
+            <div class="text-center max-w-xl mx-auto space-y-2">
+                <h2 class="text-xs uppercase font-extrabold tracking-widest text-violet-500">Let's Connect</h2>
+                <p class="text-2xl sm:text-3xl font-extrabold">Start a Conversation</p>
+                <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400">
+                    Interested in working together or hiring me for your team? Send a direct message below.
+                </p>
+            </div>
+
+            <form id="contact-form" class="space-y-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-semibold mb-1.5 text-slate-700 dark:text-slate-300">Name</label>
+                        <input type="text" id="contact-name" required placeholder="Alex Mercer" 
+                               class="w-full px-4 py-3 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 focus:outline-none focus:ring-2 focus:ring-violet-500 text-xs">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold mb-1.5 text-slate-700 dark:text-slate-300">Email Address</label>
+                        <input type="email" id="contact-email" required placeholder="alex@company.com" 
+                               class="w-full px-4 py-3 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 focus:outline-none focus:ring-2 focus:ring-violet-500 text-xs">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold mb-1.5 text-slate-700 dark:text-slate-300">Message</label>
+                    <textarea id="contact-message" rows="4" required placeholder="Tell me about your project or open position..." 
+                              class="w-full px-4 py-3 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 focus:outline-none focus:ring-2 focus:ring-violet-500 text-xs"></textarea>
+                </div>
+
+                <button type="submit" id="submit-btn" class="w-full py-3.5 rounded-xl bg-violet-600 hover:bg-violet-700 text-white font-bold text-xs transition-all shadow-md shadow-violet-500/20 flex items-center justify-center gap-2">
+                    <span>Send Direct Message</span>
+                    <i class="fa-solid fa-paper-plane text-2xs"></i>
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Floating Terminal Drawer Toggle Button & Terminal Window -->
+    <div class="fixed bottom-6 right-6 z-40">
+        <button id="terminal-toggle-btn" class="w-12 h-12 rounded-full bg-slate-900 text-violet-400 border border-violet-500/40 shadow-xl flex items-center justify-center hover:scale-110 transition-transform" title="Open Interactive CLI">
+            <i class="fa-solid fa-terminal text-sm"></i>
+        </button>
+    </div>
+
+    <!-- Interactive Terminal Window -->
+    <div id="terminal-window" class="fixed bottom-20 right-6 z-50 w-80 sm:w-96 bento-card rounded-2xl shadow-2xl p-4 hidden border border-violet-500/30 bg-slate-950/95 text-slate-200 font-mono text-2xs space-y-3">
+        <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+            <div class="flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-rose-500"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+                <span class="text-slate-400 text-3xs ml-1">jordan-cli ~ v2.4</span>
+            </div>
+            <button id="close-terminal-btn" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        
+        <div id="terminal-output" class="h-44 overflow-y-auto space-y-1 text-slate-300">
+            <p class="text-violet-400">Welcome to Jordan's CLI!</p>
+            <p class="text-slate-500">Type <span class="text-emerald-400">'help'</span> for available commands.</p>
+        </div>
+
+        <form id="terminal-form" class="flex items-center gap-2 border-t border-slate-800 pt-2">
+            <span class="text-emerald-400">➜</span>
+            <input type="text" id="terminal-input" class="w-full bg-transparent outline-none text-slate-100 placeholder-slate-600 text-2xs" placeholder="Type a command..." autocomplete="off">
+        </form>
+    </div>
+
+    <!-- Resume Preview Modal -->
+    <div id="resume-modal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md hidden items-center justify-center p-4">
+        <div class="bento-card max-w-xl w-full rounded-3xl p-6 space-y-4 relative">
+            <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-4">
+                <div class="flex items-center gap-2">
+                    <i class="fa-solid fa-file-pdf text-violet-500 text-lg"></i>
+                    <h3 class="font-bold text-sm">Jordan_Vance_Resume_2026.pdf</h3>
+                </div>
+                <button id="close-resume-modal" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            
+            <div class="p-4 bg-slate-100 dark:bg-slate-900 rounded-2xl text-xs space-y-3 max-h-80 overflow-y-auto">
+                <div class="border-b border-slate-200 dark:border-slate-800 pb-2">
+                    <p class="font-bold text-sm">Jordan Vance</p>
+                    <p class="text-slate-500">Principal Engineer • San Francisco, CA • jordan.vance@example.com</p>
+                </div>
+                <div class="space-y-1">
+                    <p class="font-semibold text-violet-500">Executive Summary</p>
+                    <p class="text-slate-600 dark:text-slate-400">8+ years driving frontend strategy, design systems, and enterprise web architecture serving tens of millions of users.</p>
+                </div>
+                <div class="space-y-1">
+                    <p class="font-semibold text-violet-500">Core Proficiencies</p>
+                    <p class="text-slate-600 dark:text-slate-400">TypeScript, React, Next.js, WebGL, Node.js, Python, System Architecture, Micro-frontends.</p>
+                </div>
+            </div>
+
+            <div class="flex items-center justify-end gap-3 pt-2">
+                <button id="download-resume-confirm" class="px-4 py-2 bg-violet-600 text-white rounded-xl text-xs font-bold hover:bg-violet-700 transition-colors flex items-center gap-2">
+                    <i class="fa-solid fa-download"></i> Download PDF
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed top-20 right-6 z-50 transform translate-x-32 opacity-0 transition-all duration-300 bento-card border-emerald-500/40 p-4 rounded-2xl shadow-xl flex items-center gap-3">
+        <i class="fa-solid fa-circle-check text-emerald-500 text-lg"></i>
+        <div class="text-xs">
+            <p id="toast-title" class="font-bold">Success</p>
+            <p id="toast-desc" class="text-slate-500">Action executed successfully.</p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="py-8 px-4 text-center text-xs text-slate-500 border-t border-slate-200 dark:border-slate-900">
+        <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p>&copy; 2026 Jordan Vance. Designed with Tailwind CSS & Vanilla JS.</p>
+            <div class="flex gap-4 text-sm text-slate-400">
+                <a href="https://github.com" target="_blank" class="hover:text-violet-500"><i class="fa-brands fa-github"></i></a>
+                <a href="https://linkedin.com" target="_blank" class="hover:text-violet-500"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="https://twitter.com" target="_blank" class="hover:text-violet-500"><i class="fa-brands fa-x-twitter"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const darkIcon = document.getElementById('theme-toggle-dark-icon');
+        const lightIcon = document.getElementById('theme-toggle-light-icon');
+
+        function updateTheme() {
+            if (document.documentElement.classList.contains('dark')) {
+                darkIcon.classList.add('hidden');
+                lightIcon.classList.remove('hidden');
+            } else {
+                darkIcon.classList.remove('hidden');
+                lightIcon.classList.add('hidden');
+            }
+        }
+
+        themeToggleBtn.addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+            updateTheme();
+        });
+        updateTheme();
+
+        function updateClock() {
+            const clockEl = document.getElementById('live-clock');
+            const now = new Date();
+            const options = { timeZone: 'America/Los_Angeles', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
+            clockEl.textContent = new Intl.DateTimeFormat('en-US', options).format(now);
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        const skillTabs = document.querySelectorAll('.skill-tab');
+        const skillCards = document.querySelectorAll('.skill-card');
+
+        skillTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                skillTabs.forEach(t => {
+                    t.classList.remove('bg-violet-600', 'text-white');
+                    t.classList.add('bg-slate-200/70', 'dark:bg-slate-800', 'text-slate-600', 'dark:text-slate-300');
+                });
+                tab.classList.add('bg-violet-600', 'text-white');
+                tab.classList.remove('bg-slate-200/70', 'dark:bg-slate-800', 'text-slate-600', 'dark:text-slate-300');
+
+                const targetTab = tab.getAttribute('data-tab');
+
+                skillCards.forEach(card => {
+                    if (targetTab === 'all' || card.getAttribute('data-category') === targetTab) {
+                        card.style.display = 'flex';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        const projectData = {
+            p1: {
+                title: "Cognitive Flow — Autonomous Agent IDE",
+                category: "AI Platform",
+                metrics: "100k+ Runs/mo • < 20ms graph sync",
+                description: "Cognitive Flow was built to address complex multi-agent orchestration challenges in high-demand enterprise environments.",
+                highlights: [
+                    "Implemented custom WebGL node canvas supporting 5,000+ interactive nodes simultaneously.",
+                    "Designed sub-20ms WebSocket sync layer between Next.js UI client and Python FastAPI microservices.",
+                    "Reduced AI agent execution latency by 40% through graph compilation algorithms."
+                ]
+            },
+            p2: {
+                title: "Telemetry Pro — Real-time Analytics Engine",
+                category: "Enterprise SaaS",
+                metrics: "500k Daily Visualizations • Sub-50ms latency",
+                description: "Telemetry Pro is an analytics engine designed for financial trading and cloud telemetry.",
+                highlights: [
+                    "Engineered custom HTML5 Canvas rendering engine capable of rendering 1M points/sec.",
+                    "Integrated WebSocket streaming and time-series data compression."
+                ]
+            }
+        };
+
+        const modal = document.getElementById('project-modal');
+        const modalContent = document.getElementById('modal-content');
+        const closeModalBtn = document.getElementById('close-modal-btn');
+
+        document.querySelectorAll('.open-details-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const id = btn.getAttribute('data-id');
+                const data = projectData[id];
+                if (data) {
+                    modalContent.innerHTML = `
+                        <span class="text-xs font-bold text-violet-500 uppercase">${data.category}</span>
+                        <h3 class="text-xl font-bold">${data.title}</h3>
+                        <p class="text-xs text-emerald-500 font-semibold">${data.metrics}</p>
+                        <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">${data.description}</p>
+                        <div class="space-y-2 pt-2">
+                            <p class="text-xs font-bold">Key Architectural Highlights:</p>
+                            <ul class="list-disc list-inside text-xs text-slate-600 dark:text-slate-400 space-y-1">
+                                ${data.highlights.map(h => `<li>${h}</li>`).join('')}
+                            </ul>
+                        </div>
+                    `;
+                    modal.classList.remove('hidden');
+                    modal.classList.add('flex');
+                }
+            });
+        });
+
+        closeModalBtn.addEventListener('click', () => {
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        });
+
+        const terminalToggleBtn = document.getElementById('terminal-toggle-btn');
+        const terminalWindow = document.getElementById('terminal-window');
+        const closeTerminalBtn = document.getElementById('close-terminal-btn');
+        const terminalForm = document.getElementById('terminal-form');
+        const terminalInput = document.getElementById('terminal-input');
+        const terminalOutput = document.getElementById('terminal-output');
+
+        terminalToggleBtn.addEventListener('click', () => {
+            terminalWindow.classList.toggle('hidden');
+        });
+
+        closeTerminalBtn.addEventListener('click', () => {
+            terminalWindow.classList.add('hidden');
+        });
+
+        terminalForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const cmd = terminalInput.value.trim().toLowerCase();
+            terminalInput.value = '';
+
+            const pCmd = document.createElement('p');
+            pCmd.className = 'text-slate-400';
+            pCmd.textContent = `➜ ${cmd}`;
+            terminalOutput.appendChild(pCmd);
+
+            const pRes = document.createElement('p');
+            pRes.className = 'text-slate-200';
+
+            switch (cmd) {
+                case 'help':
+                    pRes.innerHTML = 'Available: <span class="text-violet-400">skills</span>, <span class="text-violet-400">status</span>, <span class="text-violet-400">clear</span>, <span class="text-violet-400">contact</span>';
+                    break;
+                case 'skills':
+                    pRes.textContent = 'TypeScript, React, Next.js, Node.js, Python, Tailwind, WebGL';
+                    break;
+                case 'status':
+                    pRes.textContent = 'Status: Available for Staff/Principal engineering roles.';
+                    break;
+                case 'contact':
+                    pRes.textContent = 'Email: jordan.vance@example.com';
+                    break;
+                case 'clear':
+                    terminalOutput.innerHTML = '';
+                    return;
+                default:
+                    pRes.textContent = `Command not found: ${cmd}. Type 'help'.`;
+            }
+
+            terminalOutput.appendChild(pRes);
+            terminalOutput.scrollTop = terminalOutput.scrollHeight;
+        });
+
+        function showToast(title, desc) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-title').textContent = title;
+            document.getElementById('toast-desc').textContent = desc;
+            toast.classList.remove('translate-x-32', 'opacity-0');
+            toast.classList.add('translate-x-0', 'opacity-100');
+            setTimeout(() => {
+                toast.classList.remove('translate-x-0', 'opacity-100');
+                toast.classList.add('translate-x-32', 'opacity-0');
+            }, 3000);
+        }
+
+        const resumeModal = document.getElementById('resume-modal');
+        document.getElementById('open-resume-btn').addEventListener('click', () => {
+            resumeModal.classList.remove('hidden');
+            resumeModal.classList.add('flex');
+        });
+        document.getElementById('close-resume-modal').addEventListener('click', () => {
+            resumeModal.classList.add('hidden');
+            resumeModal.classList.remove('flex');
+        });
+        document.getElementById('download-resume-confirm').addEventListener('click', () => {
+            showToast('Download Started', 'Jordan_Vance_Resume_2026.pdf generated.');
+            resumeModal.classList.add('hidden');
+        });
+
+        document.getElementById('contact-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const btn = document.getElementById('submit-btn');
+            btn.innerHTML = `<i class="fa-solid fa-spinner animate-spin"></i> Sending...`;
+            setTimeout(() => {
+                showToast('Message Delivered', 'Thanks for reaching out! Jordan will reply soon.');
+                e.target.reset();
+                btn.innerHTML = `<span>Send Direct Message</span><i class="fa-solid fa-paper-plane text-2xs"></i>`;
+            }, 1000);
+        });
+
+        // Copy Code Snippet
+        document.getElementById('copy-code-btn').addEventListener('click', () => {
+            const code = document.getElementById('code-block').innerText;
+            const temp = document.createElement('textarea');
+            temp.value = code;
+            document.body.appendChild(temp);
+            temp.select();
+            document.execCommand('copy');
+            document.body.removeChild(temp);
+            showToast('Copied to Clipboard', 'TypeScript snippet copied!');
+        });
+    </script>
+</body>
+</html>
